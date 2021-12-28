@@ -15,7 +15,12 @@ public class loginController {
     @Autowired
     private AdminloginService adminloginService;
 
-    @RequestMapping("login")
+    @RequestMapping("/admin")
+    public String toLogin(@ModelAttribute AdminUser adminUser) {
+        return "admin/login";
+    }
+
+    @RequestMapping("/admin/login")
     public String login(@ModelAttribute AdminUser adminUser, Model model, HttpSession session) {
         return adminloginService.login(adminUser, model, session);
 

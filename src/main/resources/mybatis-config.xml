@@ -4,12 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias alias="AdminUser" type="po.AdminUser"/>
-        <typeAlias alias="User" type="po.User"/>
+        <typeAlias alias="AdminUser" type="pojo.AdminUser"/>
+        <typeAlias alias="User" type="pojo.User"/>
 
     </typeAliases>
     <mappers>
-
+        <mapper resource="mybatis/admin/AdminMapper.xml"/>
     </mappers>
 </configuration>
 

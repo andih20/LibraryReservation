@@ -13,19 +13,19 @@
 </head>
 <body>
 
-<%--@elvariable id="adminUser" type="pojo"--%>
-<form:form action="/login" modelAttribute="adminUser" method="post">
+<%--@elvariable id="AdminUser" type="pojo"--%>
+<form:form action="${pageContext.request.contextPath}/admin/login" modelAttribute="AdminUser" method="post">
     <table>
         <tr>
             <td>姓名：</td>
             <td>
-                <form:input path="uname"/>
+
             </td>
         </tr>
         <tr>
             <td>密码：</td>
             <td>
-                <form:password path="upassword"/>
+
             </td>
         </tr>
     </table>
