@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="libraryreservation@localhost" uuid="151bc463-b509-469a-92e5-f086af3e1355">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/libraryreservation?characterEncoding=utf8&amp;serverTimezone=UTC</jdbc-url>
+    </data-source>
+  </component>
+</project>
