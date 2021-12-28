@@ -11,6 +11,10 @@
     <title>注册</title>
 </head>
 <body>
-
+    姓名:<input type="text" name="name"><br>
+    密码:<input type="password" name="password"><br>
+    邮箱:<input type="text" name="email"><br>
+    <input type="button" value="取消" onclick="conceal">
+    <input type="submit" value="提交">
 </body>
 </html>
