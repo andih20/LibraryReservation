@@ -13,7 +13,7 @@
         }
         //取消按钮
         function cancel(){
-            document.forms[0].action = "";
+            document.forms[0].action = "main";
         }
     </script>
 </head>

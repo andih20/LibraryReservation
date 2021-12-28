@@ -9,12 +9,22 @@
 <html>
 <head>
     <title>注册</title>
+    <script type="text/javascript">
+        function conceal(){
+            document.forms[0].action = "login";
+        }
+        function submin(){
+            document.forms[0].submit();
+        }
+    </script>
 </head>
 <body>
+<form action="" method="post">
     姓名:<input type="text" name="name"><br>
     密码:<input type="password" name="password"><br>
     邮箱:<input type="text" name="email"><br>
-    <input type="button" value="取消" onclick="conceal">
-    <input type="submit" value="提交">
+    <input type="button" value="取消" onclick="conceal()">
+    <input type="button" value="提交" onclick="submit()">
+</form>
 </body>
 </html>
