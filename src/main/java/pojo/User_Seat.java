@@ -1,7 +1,5 @@
 package pojo;
 
-import java.sql.Time;
-
 public class User_Seat {
     private Integer uid;
     private Integer user_id;
@@ -34,19 +32,19 @@ public class User_Seat {
         this.seat_id = seat_id;
     }
 
-    public Time getStart_time() {
+    public String getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(Time start_time) {
+    public void setStart_time(String start_time) {
         this.start_time = start_time;
     }
 
-    public Time getEnd_time() {
+    public String getEnd_time() {
         return end_time;
     }
 
-    public void setEnd_time(Time end_time) {
+    public void setEnd_time(String end_time) {
         this.end_time = end_time;
     }
 
