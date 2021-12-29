@@ -1,17 +1,19 @@
 package pojo;
 
 public class User {
-    private Integer uid;
+    private Integer id;
     private String uname;
     private String upassword;
     private String uemail;
+    private Integer number=0;  //未签到次数
+    private  Boolean black;     //黑名单
 
-    public Integer getUid() {
-        return uid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUname() {
@@ -37,4 +39,21 @@ public class User {
     public void setUemail(String uemail) {
         this.uemail = uemail;
     }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public Boolean getBlack() {
+        return black;
+    }
+
+    public void setBlack(Boolean black) {
+        this.black = black;
+    }
+
 }
