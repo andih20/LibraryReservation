@@ -21,9 +21,7 @@
 <body>
 <%--@elvariable id="user" type="pojo"--%>
 <%--<jsp:useBean id="user" class="pojo.User" scope="request" />--%>
-    <c:if test="${user.getUname()}">
-        欢迎 ${user.getUname()}<br>
-    </c:if>
+    欢迎-- ${user.getUname()}<br>
 
     <%--查看所有座位--%>
     <input type="button" value="查看所有座位" onclick="queryAllseat()"/><br>

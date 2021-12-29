@@ -26,7 +26,7 @@ public class DispatchController {
 
     @RequestMapping("/toMain")
     public String toMain(@ModelAttribute("user") User user, Model model){
-
+        model.addAttribute("user",user);
         return "user/main";
     }
 }
