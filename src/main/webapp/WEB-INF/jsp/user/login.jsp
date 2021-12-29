@@ -11,15 +11,25 @@
         function login(){
             document.forms[0].submit();
         }
-        //取消按钮
-        function cancel(){
-            document.forms[0].action = "main";
+        //重置按钮
+        function reset(){
+            document.forms[0].reset();
+        }
+        //注册
+        function toRegister(){
+            document.forms[0].action="${pageContext.request.contextPath}/toRegister";
+            document.forms[0].submit();
         }
     </script>
 </head>
 <body>
-<form:form action="" method="post">
+<%--@elvariable id="user" type="pojo"--%>
+<jsp:useBean id="user" class="pojo.User" scope="session" />
+<form:form action="${pageContext.request.contextPath}/toMain" modelAttribute="user" method="post">
     <table>
+        <tr>
+            <td>登录界面</td>
+        </tr>
         <tr>
             <td>姓名：</td>
             <td>
@@ -33,12 +43,19 @@
             </td>
         </tr>
         <tr>
+            <td>邮箱：</td>
+            <td>
+                <form:input path="uemail" maxlength="20"/>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2">
-                <input type="button" onclick="login()" >
-                <input type="button" onclick="cancel()" >
+                <input type="button" value="重置" onclick="reset()" >
+                <input type="button" value="提交" onclick="login()" >
             </td>
         </tr>
     </table>
 </form:form>
+<a style="color: cyan" onclick="toRegister()">如果你还没有账号，请点此处注册</a>
 </body>
 </html>

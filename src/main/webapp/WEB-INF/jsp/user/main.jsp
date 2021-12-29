@@ -19,17 +19,16 @@
     </script>
 </head>
 <body>
-<%--login--%>
-<c:if test="true">
-    您还没有登录，请<a href="login.jsp">登录</a><br>
-</c:if>
-<c:if test="${user.uname}">
-    欢迎${user.uname}<br>
-</c:if>
+<%--@elvariable id="user" type="pojo"--%>
+<%--<jsp:useBean id="user" class="pojo.User" scope="request" />--%>
+    <c:if test="${user.getUname()}">
+        欢迎 ${user.getUname()}<br>
+    </c:if>
 
-<%--查看所有座位--%>
+    <%--查看所有座位--%>
     <input type="button" value="查看所有座位" onclick="queryAllseat()"/><br>
-<%--预定座位--%>
+    <%--预定座位--%>
     <input type="button" value="预定座位" onclick="reservationSeat()"/><br>
+
 </body>
 </html>
