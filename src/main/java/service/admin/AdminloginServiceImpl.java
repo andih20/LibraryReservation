@@ -17,9 +17,10 @@ public class AdminloginServiceImpl implements AdminloginService {
     public String login(AdminUser adminuser, Model model, HttpSession session) {
         if (adminloginDao.login(adminuser) != null && adminloginDao.login(adminuser).size() > 0) {
             session.setAttribute("adminuser", adminuser);
-            return "main";
+            // model.addAttribute("adminuser", adminuser);
+            return "admin/main";
         }
         model.addAttribute("msg", "用户名或密码错误！");
-        return "login";
+        return "admin/login";
     }
 }

@@ -16,12 +16,12 @@ public class loginController {
     private AdminloginService adminloginService;
 
     @RequestMapping("/admin")
-    public String toLogin(@ModelAttribute AdminUser adminUser) {
+    public String toLogin(@ModelAttribute("adminUser") AdminUser adminUser) {
         return "admin/login";
     }
 
     @RequestMapping("/admin/login")
-    public String login(@ModelAttribute AdminUser adminUser, Model model, HttpSession session) {
+    public String login(@ModelAttribute("adminUser") AdminUser adminUser, Model model, HttpSession session) {
         return adminloginService.login(adminUser, model, session);
 
     }
