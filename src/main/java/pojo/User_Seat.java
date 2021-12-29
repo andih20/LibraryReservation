@@ -6,8 +6,8 @@ public class User_Seat {
     private Integer uid;
     private Integer user_id;
     private Integer seat_id;
-    private Time start_time;
-    private Time end_time;
+    private String start_time;
+    private String end_time;
     private Boolean presence;
 
     public Integer getUid() {
