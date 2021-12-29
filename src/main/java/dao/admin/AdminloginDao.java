@@ -1,4 +1,4 @@
-package dao;
+package dao.admin;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

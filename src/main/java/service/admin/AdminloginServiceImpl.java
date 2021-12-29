@@ -1,6 +1,6 @@
 package service.admin;
 
-import dao.AdminloginDao;
+import dao.admin.AdminloginDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
