@@ -1,12 +1,12 @@
 package pojo;
 
 public class User {
-    private Integer id;
+    private Integer id;         // 自增
     private String uname;
     private String upassword;
     private String uemail;
-    private Integer number=0;  //未签到次数
-    private  Boolean black;     //黑名单
+    private Integer number=0;  //未签到次数，默认是0
+    private Boolean black;     //黑名单，默认是 false
 
     public Integer getId() {
         return id;

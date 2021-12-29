@@ -2,9 +2,9 @@ package pojo;
 
 public class Seat {
     private Integer id;
-    private Integer floor;
-    private Boolean empty;
-    private Boolean impair;
+    private Integer floor;      // 楼层
+    private Boolean empty;      // 是否为空，默认为 true
+    private Boolean impair;     // 是否损坏，默认为 false
 
 
     public Integer getFloor() {

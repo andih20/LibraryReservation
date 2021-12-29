@@ -6,10 +6,15 @@
     <typeAliases>
         <typeAlias alias="AdminUser" type="pojo.AdminUser"/>
         <typeAlias alias="User" type="pojo.User"/>
+        <typeAlias alias="Floor" type="pojo.Floor"/>
+        <typeAlias alias="Seat" type="pojo.Seat"/>
+        <typeAlias alias="User_Seat" type="pojo.User_Seat"/>
 
     </typeAliases>
     <mappers>
         <mapper resource="mybatis/admin/AdminMapper.xml"/>
+        <mapper resource="mybatis/admin/AdminUserMapper.xml"/>
+
     </mappers>
 </configuration>
 

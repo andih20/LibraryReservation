@@ -1,12 +1,12 @@
 package pojo;
 
 public class User_Seat {
-    private Integer uid;
-    private Integer user_id;
-    private Integer seat_id;
-    private String start_time;
-    private String end_time;
-    private Boolean presence;
+    private Integer uid;        // 自增
+    private Integer user_id;    // user 里的 id
+    private Integer seat_id;    // seat 里的 id
+    private String start_time;  // 预约开始时间
+    private String end_time;    // 预约结束时间
+    private Boolean presence;   // 是否缺席，默认是 false未出席
 
     public Integer getUid() {
         return uid;
