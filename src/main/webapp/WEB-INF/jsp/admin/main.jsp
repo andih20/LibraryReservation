@@ -78,10 +78,10 @@
                 <div class="dropdown">
                     <a>用户管理</a>
                     <div class="p2son">
-                        <a>添加用户</a>
-                        <a>删除用户</a>
+                        <a href="/LibraryReservation_war_exploded/adminUser/ToaddUser">添加用户</a>
+                        <a href="/LibraryReservation_war_exploded/adminUser/TodeleteUser">删除用户</a>
                         <a>修改用户</a>
-                        <a>查找用户</a>
+                        <a href="/LibraryReservation_war_exploded/adminUser/ToselectUser">查找用户</a>
                     </div>
                 </div>
             </li>

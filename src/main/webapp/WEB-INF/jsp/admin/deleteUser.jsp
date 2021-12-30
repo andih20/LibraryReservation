@@ -17,7 +17,6 @@
                 window.location.href = "/LibraryReservation_war_exploded/adminUser/deleteUser?uemail="+uemail;
             }
         }
-
     </script>
 </head>
 <body>
@@ -45,15 +44,15 @@
 
                 <c:if test="${UserInfo.size() != 0 }">
                     <tr>
+                        <td colspan="3"><h2>${userExitmsg}</h2></td>
+                    </tr>
+                    <tr>
                         <th>用户名</th>
                         <th>用户邮箱</th>
                         <th>违约次数</th>
                         <th>删除</th>
                     </tr>
                     <c:forEach items="${UserInfo}" var="user">
-                        <tr>
-                            <td colspan="3"><h2>${userExitmsg}</h2></td>
-                        </tr>
                         <tr>
                             <td>${user.uname}</td>
                             <td>${user.uemail}</td>
@@ -64,7 +63,6 @@
                 </c:if>
 
                 <c:if test="${UserInfo.size() == 0 }">
-
                     <tr>
                         <th>用户名</th>
                         <th>用户邮箱</th>

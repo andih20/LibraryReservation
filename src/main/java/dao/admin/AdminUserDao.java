@@ -1,7 +1,9 @@
 package dao.admin;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import pojo.User;
 
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.List;
 @Repository("adminUserDao")
 @Mapper
 public interface AdminUserDao {
+    // 增加用户
+    public int addUser(User user);
     // 删除用户
     public int deleteUser(String uemail);
     // 修改用户

@@ -12,8 +12,14 @@ public interface AdminUserService {
     // 修改用户
     public String updateUser(String uemail, Model model);
     public String ToupdateUser(Model model);
-    // 查询所有用户
-    public List<User> selectAllUser();
-    // 按 email 查询用户
-    public List<User> selectUserByEmail(String uemail);
+    // 到查询界面
+    public String ToselectUser(String uemail, Model model);
+    // 查询用户
+    public String selectUser(String uemail, Model model);
+    // 增加用户
+    public String addUser(User user);
+    // 到增加页面
+    public String ToaddUser(User user, Model model);
+
+
 }
