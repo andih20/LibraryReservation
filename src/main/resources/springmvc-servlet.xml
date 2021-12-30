@@ -35,4 +35,10 @@ maxUploadSize="5400000" 是允许上传文件的最大值，单位为字节
 uploadTempDir="fileUpload/temp" 为上传文件的临时路径-->
     <!-- 托管MyExceptionHandler -->
     <!--<bean class="com.exception.MyExceptionHandler"/>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="controller.user.UserInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

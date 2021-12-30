@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.user.SeatDao">
+<!--    //获取所有座位，通过楼层-->
+    <resultMap id="Seat_List" type="Seat">
+        <id property="id" column="id"/>
+        <result property="isempty" column="isempty"/>
+        <result property="impair" column="impair"/>
+        <result property="floor" column="floor_id"/>
+    </resultMap>
+    <select id="getAllSeatByFloor" parameterType="Floor" resultMap="Seat_List">
+        select * from seat where floor_id = #{id}
+    </select>
+
+</mapper>

@@ -27,8 +27,8 @@
 </head>
 <body>
     <%--@elvariable id="user" type="pojo"--%>
-    <jsp:useBean id="new_user" class="pojo.User" scope="session" />
-    <form:form action="${pageContext.request.contextPath}/toRegister" modelAttribute="new_user" method="post">
+    <jsp:useBean id="user" class="pojo.User" scope="session" />
+    <form:form action="${pageContext.request.contextPath}/register" modelAttribute="user" method="post">
         <table>
             <tr>
                 <td>注册界面</td>

@@ -3,9 +3,17 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.user.UserDao">
+    <resultMap id="user" type="User">
+        <id column="id" property="id"/>
+        <result column="uname" property="uname"/>
+        <result column="upassword" property="upassword"/>
+        <result column="uemail" property="uemail"/>
+        <result column="number" property="number"/>
+        <result column="black" property="black"/>
+    </resultMap>
 <!--    增加用户-->
-    <insert id="addUser" parameterType="pojo.User">
-        insert into user(uname,upassword,uemail) value #{uname},#{upassword},#{uemail}
+    <insert id="addUser" keyProperty="id" useGeneratedKeys="true" parameterType="pojo.User">
+        insert into user(uname,upassword,uemail) values (#{uname},#{upassword},#{uemail})
     </insert>
 
 <!--    查找一个用户-->
@@ -14,7 +22,7 @@
     </select>
 
     <!--    查找一个用户通过email&name-->
-    <select id="queryUserByEmail" parameterType="User" resultType="User">
-        select * from user where uname=#{uname} and uemail=#{uemail}
+    <select id="queryUserByEmail" parameterType="User" resultMap="user">
+        select * from user where uemail=#{uemail}
     </select>
 </mapper>

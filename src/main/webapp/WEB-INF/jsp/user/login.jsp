@@ -25,7 +25,7 @@
 <body>
 <%--@elvariable id="user" type="pojo"--%>
 <jsp:useBean id="user" class="pojo.User" scope="session" />
-<form:form action="${pageContext.request.contextPath}/toMain" modelAttribute="user" method="post">
+<form:form action="${pageContext.request.contextPath}/login" modelAttribute="user" method="post">
     <table>
         <tr>
             <td>登录界面</td>
