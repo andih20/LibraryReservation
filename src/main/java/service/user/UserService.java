@@ -3,5 +3,9 @@ package service.user;
 import pojo.User;
 
 public interface UserService {
-    public void AddUser(User user);
+    public Boolean AddUser(User user);
+
+    public User QueryUser(User user);
+
+    public User QueryUserByEmail(User user);
 }

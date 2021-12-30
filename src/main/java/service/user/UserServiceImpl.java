@@ -11,7 +11,18 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public void AddUser(User user){
+    public Boolean AddUser(User user){
         userDao.addUser(user);
+        return true;
+    }
+
+    @Override
+    public User QueryUser(User user) {
+        return userDao.queryUser(user);
+    }
+
+    @Override
+    public User QueryUserByEmail(User user) {
+        return userDao.queryUserByEmail(user);
     }
 }

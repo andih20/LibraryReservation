@@ -27,8 +27,8 @@
 </head>
 <body>
     <%--@elvariable id="user" type="pojo"--%>
-    <jsp:useBean id="user" class="pojo.User" scope="session" />
-    <form:form action="${pageContext.request.contextPath}/tologin" modelAttribute="user" method="post">
+    <jsp:useBean id="new_user" class="pojo.User" scope="session" />
+    <form:form action="${pageContext.request.contextPath}/toRegister" modelAttribute="new_user" method="post">
         <table>
             <tr>
                 <td>注册界面</td>
@@ -53,13 +53,12 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <input type="button" value="返回" onclick="conceal()">
+                    <input type="button" value="返回登录" onclick="conceal()">
                     <input type="button" value="重置" onclick="reset()" >
                     <input type="button" value="提交" onclick="submit()" >
                 </td>
             </tr>
         </table>
     </form:form>
-    <a style="color: cyan">如果你是管理员，请点此处</a>
 </body>
 </html>

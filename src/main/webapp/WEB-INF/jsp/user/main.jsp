@@ -20,13 +20,7 @@
 </head>
 <body>
 <%--@elvariable id="user" type="pojo"--%>
-<%--<jsp:useBean id="user" class="pojo.User" scope="request" />--%>
     欢迎-- ${user.getUname()}<br>
-
-    <%--查看所有座位--%>
-    <input type="button" value="查看所有座位" onclick="queryAllseat()"/><br>
-    <%--预定座位--%>
-    <input type="button" value="预定座位" onclick="reservationSeat()"/><br>
 
 </body>
 </html>

@@ -42,12 +42,12 @@
                 <form:password path="upassword" maxlength="20"/>
             </td>
         </tr>
-        <tr>
-            <td>邮箱：</td>
-            <td>
-                <form:input path="uemail" maxlength="20"/>
-            </td>
-        </tr>
+<%--        <tr>--%>
+<%--            <td>邮箱：</td>--%>
+<%--            <td>--%>
+<%--                <form:input path="uemail" maxlength="20"/>--%>
+<%--            </td>--%>
+<%--        </tr>--%>
         <tr>
             <td colspan="2">
                 <input type="button" value="重置" onclick="reset()" >
@@ -57,5 +57,8 @@
     </table>
 </form:form>
 <a style="color: cyan" onclick="toRegister()">如果你还没有账号，请点此处注册</a>
+<br>
+<br>
+<a style="color: cyan" style="color: cyan">如果你是管理员，请点此处</a>
 </body>
 </html>

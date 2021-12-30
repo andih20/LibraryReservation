@@ -7,4 +7,14 @@
     <insert id="addUser" parameterType="pojo.User">
         insert into user(uname,upassword,uemail) value #{uname},#{upassword},#{uemail}
     </insert>
+
+<!--    查找一个用户-->
+    <select id="queryUser" parameterType="User" resultType="User">
+        select * from user where uname=#{uname} and upassword=#{upassword}
+    </select>
+
+    <!--    查找一个用户通过email&name-->
+    <select id="queryUserByEmail" parameterType="User" resultType="User">
+        select * from user where uname=#{uname} and uemail=#{uemail}
+    </select>
 </mapper>

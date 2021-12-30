@@ -8,4 +8,8 @@ import pojo.User;
 @Mapper
 public interface UserDao {
     public void addUser(User user);
+
+    public User queryUser(User user);
+
+    public User queryUserByEmail(User user);
 }

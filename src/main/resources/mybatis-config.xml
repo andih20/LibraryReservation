@@ -12,9 +12,11 @@
 
     </typeAliases>
     <mappers>
+<!--        //admin-->
         <mapper resource="mybatis/admin/AdminMapper.xml"/>
         <mapper resource="mybatis/admin/AdminUserMapper.xml"/>
-
+<!--        //user-->
+        <mapper resource="mybatis/user/UserMapper.xml"/>
     </mappers>
 </configuration>
 
