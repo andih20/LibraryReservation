@@ -61,8 +61,10 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
-    public String addUser(@Param("user") User user) {
-        adminUserDao.addUser(user);
+    public String addUser(@Param("user") User user, Model model) {
+        if(adminUserDao.addUser(user)!=0){
+            model.addAttribute("addUsermsg", "用户添加成功！");
+        }
         // 返回添加界面
         return "forward:/adminUser/ToaddUser";
     }

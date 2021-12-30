@@ -10,16 +10,13 @@
 <html>
 <head>
     <title>RealUpdate</title>
-    <!--
     <script type="text/javascript">
-        function UserUpdate(uname,upassword,uemail){
-            if(window.confirm("是否更新该用户？")){
-                // window.location.href = "/LibraryReservation_war_exploded/adminUser/updateUser?uemail="+uemail;
-                window.location.href = "/LibraryReservation_war_exploded/adminUser/updateUser?uemail="+uemail+"&uname="+uname+"&upassword="+upassword;
+        function returnAdmin(){
+            if(window.confirm("是否返回主界面？")){
+                window.location.href = "/LibraryReservation_war_exploded/admin/main";
             }
         }
     </script>
-    -->
 </head>
 <body>
 <%--@elvariable id="User" type="pojo"--%>
@@ -28,6 +25,7 @@
     <table>
         <tr>
             <td>后台更新用户</td>
+            <td><input type="button" value="返回" onclick="returnAdmin()"></td>
         </tr>
         <tr>
             <td>姓名：</td>

@@ -15,9 +15,16 @@
     <script type="text/javascript">
         function UserUpdate(uemail){
             if(window.confirm("是否更新该用户？")){
-                window.location.href = "/LibraryReservation_war_exploded/adminUser/updateRealUser";
+                window.location.href = "/LibraryReservation_war_exploded/adminUser/updateRealUser?uemail="+uemail;
             }
         }
+
+        function returnAdmin(){
+            if(window.confirm("是否返回主界面？")){
+                window.location.href = "/LibraryReservation_war_exploded/admin/main";
+            }
+        }
+
     </script>
 
 </head>
@@ -32,6 +39,7 @@
             <table>
                 <tr>
                     <td>请输入您想查询的用户邮箱:</td>
+                    <td><input type="button" value="返回" onclick="returnAdmin()"></td>
                     <td>
                         <form:input path="uemail"/>
                     </td>
@@ -59,7 +67,7 @@
                             <td>${user.uname}</td>
                             <td>${user.upassword}</td>
                             <td>${user.uemail}</td>
-                            <td><a href="javascript:UserUpdate('${Updateuemail}')">更新</a></td>
+                            <td><a href="javascript:UserUpdate('${user.uemail}')">更新</a></td>
                         </tr>
                     </c:forEach>
 
@@ -79,7 +87,7 @@
                             <td>${user.uname}</td>
                             <td>${user.upassword}</td>
                             <td>${user.uemail}</td>
-                            <td><a href="javascript:UserUpdate('${Updateuemail}')">更新</a></td>
+                            <td><a href="javascript:UserUpdate('${user.uemail}')">更新</a></td>
                         </tr>
                     </c:forEach>
                 </c:if>

@@ -19,7 +19,7 @@ public interface AdminUserService {
     // 查询用户
     public String selectUser(String uemail, Model model);
     // 增加用户
-    public String addUser(User user);
+    public String addUser(User user, Model model);
     // 到增加页面
     public String ToaddUser(User user, Model model);
 

@@ -10,6 +10,13 @@
 <html>
 <head>
     <title>addUser</title>
+    <script type="text/javascript">
+        function returnAdmin(){
+            if(window.confirm("是否返回主界面？")){
+                window.location.href = "/LibraryReservation_war_exploded/admin/main";
+            }
+        }
+    </script>
 </head>
 <body>
 <jsp:useBean id="User" class="pojo.User" scope="request" ></jsp:useBean>
@@ -18,6 +25,7 @@
     <table>
         <tr>
             <td>后台添加用户</td>
+            <td><input type="button" value="返回" onclick="returnAdmin()"></td>
         </tr>
         <tr>
             <td>姓名：</td>
@@ -44,7 +52,7 @@
             </td>
         </tr>
     </table>
-
+    ${addUsermsg}
 </form:form>
 
 

@@ -25,4 +25,13 @@ public class loginController {
         return adminloginService.login(adminUser, model, session);
 
     }
+    @RequestMapping("/admin/main")
+    public String AdminMain(@ModelAttribute("adminUser") AdminUser adminUser, HttpSession session){
+        if(session.getAttribute("adminuser")!=null) {
+            return "admin/main";
+        }
+        else{
+            return "admin/login";
+        }
+    }
 }

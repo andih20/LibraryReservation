@@ -17,6 +17,12 @@
                 window.location.href = "/LibraryReservation_war_exploded/adminUser/deleteUser?uemail="+uemail;
             }
         }
+        function returnAdmin(){
+            if(window.confirm("是否返回主界面？")){
+                window.location.href = "/LibraryReservation_war_exploded/admin/main";
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -30,6 +36,7 @@
             <table>
             <tr>
                 <td>请输入您想查询的用户邮箱:</td>
+                <td><input type="button" value="返回" onclick="returnAdmin()"></td>
                 <td>
                     <form:input path="uemail"/>
                 </td>

@@ -46,8 +46,8 @@ public class AdminUserController {
     }
     // 增加用户
     @RequestMapping("/addUser")
-    public String addUser(User user) {
-        return adminUserService.addUser(user);
+    public String addUser(User user, Model model) {
+        return adminUserService.addUser(user,model);
     }
 
     // 到更新页面
