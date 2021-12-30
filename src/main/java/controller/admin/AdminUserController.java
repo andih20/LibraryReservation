@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pojo.User;
 import service.admin.AdminUserService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -46,11 +47,23 @@ public class AdminUserController {
     // 增加用户
     @RequestMapping("/addUser")
     public String addUser(User user) {
-        System.out.println(user.getUname());
         return adminUserService.addUser(user);
     }
 
-
+    // 到更新页面
+    @RequestMapping("/ToupdateUser")
+    public String ToupdateUser(String uemail, Model model, HttpSession session){
+        return adminUserService.ToupdateUser(uemail,model,session);
+    }
+    // 更新用户
+    @RequestMapping("/updateUser")
+    public String updateUser(User user, Model model){
+        return adminUserService.updateUser(user, model);
+    }
+    @RequestMapping("/updateRealUser")
+    public String updateRealUser(String uemail, Model model, HttpSession session){
+        return adminUserService.updateRealUser(uemail, model, session);
+    }
 
 
 

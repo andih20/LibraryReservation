@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import pojo.User;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service("adminUserService")
@@ -40,16 +41,6 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
-    public String updateUser(String uemail, Model model) {
-        return null;
-    }
-
-    @Override
-    public String ToupdateUser(Model model) {
-        return null;
-    }
-
-    @Override
     public String selectUser(String uemail, Model model) {
         if (adminUserDao.selectUserByEmail(uemail).size()>0){
             model.addAttribute("Selectmsg", "用户查找成功！");
@@ -79,6 +70,36 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     public String ToaddUser(@Param("user") User user, Model model) {
         return "admin/addUser";
+    }
+
+
+    @Override
+    public String updateUser(@Param("user") User user, Model model) {
+        if(adminUserDao.updateUser(user)!=0){
+            model.addAttribute("updatemsg", "用户更新成功！");
+        }
+        // 返回更新界面
+        return "forward:/adminUser/ToupdateUser";
+    }
+
+    @Override
+    public String ToupdateUser(String uemail, Model model, HttpSession session) {
+        model.addAttribute("UpdateAllUserInfo",adminUserDao.selectAllUser());
+        model.addAttribute("UpdateUserInfo", adminUserDao.selectUserByEmail(uemail));
+        if(adminUserDao.selectUserByEmail(uemail).size()!=0){
+            model.addAttribute("Updateuemail",uemail);
+            model.addAttribute("UpdateuserExitmsg","已找到用户");
+        }
+        return "admin/updateUser";
+    }
+
+    @Override
+    public String updateRealUser(String uemail, Model model,HttpSession session) {
+        if(adminUserDao.selectUserByEmail(uemail).size()!=0){
+            model.addAttribute("Updateuemail",uemail);
+            session.setAttribute("Updateuemail",uemail);
+        }
+        return "admin/updateRealUser";
     }
 
 }

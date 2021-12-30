@@ -10,7 +10,7 @@
     </delete>
 
     <!-- 修改用户 -->
-    <update id="updateUser" parameterType="String">
+    <update id="updateUser" parameterType="pojo.User">
         update user set uname = #{uname}, upassword = #{upassword} where uemail = #{uemail}
     </update>
 
