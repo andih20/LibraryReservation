@@ -1,6 +1,6 @@
 package pojo;
 
-public class User_Seat {
+public class Recording {
     private Integer uid;        // 自增
     private Integer user_id;    // user 里的 id
     private Integer seat_id;    // seat 里的 id

@@ -20,14 +20,17 @@
         }
         function lay(floor){
             switch (floor){
-                case 1:{<% session.setAttribute("lay",1);%>break;}
-                case 2:{<% session.setAttribute("lay",2);%>break;}
-                case 3:{<% session.setAttribute("lay",3);%>break;}
-                case 4:{<% session.setAttribute("lay",4);%>break;}
-                case 5:{<% session.setAttribute("lay",5);%>break;}
-                default :<%session.setAttribute("lay",1);%>
+                case 1:
+                    alert("1")
+                    break;
+                case 2:
+                    alert("2")
+                    break;
+                case 3:
+                    alert(3);
+                    break;
             }
-            document.forms[0].submit();
+            // document.forms[0].submit();
         }
     </script>
 </head>
@@ -38,13 +41,14 @@
     欢迎-- ${user.uname}<br>
     <input type="button" onclick="user_info()" value="查看个人信息"><br><br>
     请选择楼层:
+    <input type="hidden" name="lay">
     <table>
         <tr>
-            <td><input type="button" value="第一层" onclick="lay(1)"></td>
-            <td><input type="button" value="第二层" onclick="lay(2)"></td>
-            <td><input type="button" value="第三层" onclick="lay(3)"></td>
-            <td><input type="button" value="第四层" onclick="lay(4)"></td>
-            <td><input type="button" value="第五层" onclick="lay(5)"></td>
+            <td><input type="submit" value="第一层" onclick="<%session.setAttribute("lay",1);%>"></td>
+            <td><input type="submit" value="第二层" onclick="<%session.setAttribute("lay",2);%>"></td>
+            <td><input type="submit" value="第三层" onclick="<%session.setAttribute("lay",3);%>"></td>
+            <td><input type="submit" value="第四层" onclick="<%session.setAttribute("lay",4);%>"></td>
+            <td><input type="submit" value="第五层" onclick="<%session.setAttribute("lay",1);%>"></td>
         </tr>
     </table>
     <table style="border: 1px;color: black">

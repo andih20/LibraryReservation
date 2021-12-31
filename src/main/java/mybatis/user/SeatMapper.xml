@@ -8,10 +8,10 @@
         <id property="id" column="id"/>
         <result property="isempty" column="isempty"/>
         <result property="impair" column="impair"/>
-        <result property="floor" column="floor_id"/>
+        <result property="floor" column="floor"/>
     </resultMap>
     <select id="getAllSeatByFloor" parameterType="Floor" resultMap="Seat_List">
-        select * from seat where floor_id = #{id}
+        select * from seat where floor = #{id}
     </select>
 
 </mapper>

@@ -1,22 +1,20 @@
 package controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import pojo.Floor;
+import pojo.Recording;
 import pojo.Seat;
 import pojo.User;
+import service.user.RecordingService;
 import service.user.SeatService;
 import service.user.UserService;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class DispatchController {
@@ -24,6 +22,8 @@ public class DispatchController {
     private UserService userService;
     @Autowired
     private SeatService seatService;
+    @Autowired
+    private RecordingService recordingService;
 
     //登录界面初始化
     @RequestMapping("/toLogin")
@@ -71,17 +71,19 @@ public class DispatchController {
     @RequestMapping("toMain")
     public String toMain(User user,HttpSession session, Model model){
         //获取所有座位的使用情况
-        String lay = session.getAttribute("lay").toString();
         Floor floor = new Floor();
-        if(Objects.equals(lay, "")){
-            floor.setId(1); //默认第一页
+        //默认起始页为第一页
+        Integer lay = (Integer) session.getAttribute("lay");
+        if(lay != null){
+            floor.setId(lay); //选页
         }else {
-            floor.setId(Integer.parseInt(lay)); //选页
+            floor.setId(1); //默认第一页
         }
+
         List<Seat> seats = seatService.GetAllSeatByFloor(floor);
+        user = (User) session.getAttribute("user");
         model.addAttribute("seats",seats);
         model.addAttribute("floor",floor);
-        user = (User) session.getAttribute("user");
         model.addAttribute("user",user);
 
         return "user/main";
@@ -100,6 +102,11 @@ public class DispatchController {
         User user = (User) session.getAttribute("user");
         user = userService.QueryUser(user);
         session.setAttribute("user",user);
+
+        //找到个人记录
+        List<Recording> recordings = recordingService.QueryRecordingByUser(user);
+        session.setAttribute("recordings",recordings);
+
         return "user/user_info";
     }
 }
