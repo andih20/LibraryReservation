@@ -16,6 +16,7 @@
                 window.location.href = "/LibraryReservation_war_exploded/admin/main";
             }
         }
+
     </script>
 </head>
 <body>
@@ -30,19 +31,22 @@
         <tr>
             <td>姓名：</td>
             <td>
-                <form:input path="uname"/>
+                <form:input path="uname" id="name" onblur="nameCheck()"/>
+                <span class="name">3-8位英文或数字组成</span>
             </td>
         </tr>
         <tr>
             <td>密码：</td>
             <td>
                 <form:password path="upassword" maxlength="20"/>
+                <span class="password">6-18位英文或数字组成</span>
             </td>
         </tr>
         <tr>
             <td>邮箱：</td>
             <td>
                 <form:input path="uemail" maxlength="20"/>
+                <span class="email">请填写正确的邮箱格式</span>
             </td>
         </tr>
         <tr>

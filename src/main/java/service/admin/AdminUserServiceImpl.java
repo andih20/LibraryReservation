@@ -10,6 +10,8 @@ import pojo.User;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service("adminUserService")
 @Transactional
@@ -62,8 +64,25 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public String addUser(@Param("user") User user, Model model) {
-        if(adminUserDao.addUser(user)!=0){
-            model.addAttribute("addUsermsg", "用户添加成功！");
+        String namePattern = "[a-zA-Z0-9]{3,8}$";
+        Pattern r_name = Pattern.compile(namePattern);
+        Matcher m_name = r_name.matcher(user.getUname());
+
+        String pwPattern = "[a-zA-Z0-9]{6,18}$";
+        Pattern r_pw = Pattern.compile(pwPattern);
+        Matcher m_pw = r_pw.matcher(user.getUpassword());
+
+        String emailPattern = "[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?";
+        Pattern r_email = Pattern.compile(emailPattern);
+        Matcher m_email = r_email.matcher(user.getUemail());
+
+        if(m_name.find() && m_email.find() && m_pw.find()) {
+            if (adminUserDao.addUser(user) != 0) {
+                model.addAttribute("addUsermsg", "用户添加成功！");
+            }
+        }
+        else{
+            model.addAttribute("addUsermsg", "用户添加失败！输入格式错误！");
         }
         // 返回添加界面
         return "forward:/adminUser/ToaddUser";
@@ -77,9 +96,26 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public String updateUser(@Param("user") User user, Model model) {
-        if(adminUserDao.updateUser(user)!=0){
-            model.addAttribute("updatemsg", "用户更新成功！");
+        String namePattern = "[a-zA-Z0-9]{3,8}$";
+        Pattern r_name = Pattern.compile(namePattern);
+        Matcher m_name = r_name.matcher(user.getUname());
+
+        String pwPattern = "[a-zA-Z0-9]{6,18}$";
+        Pattern r_pw = Pattern.compile(pwPattern);
+        Matcher m_pw = r_pw.matcher(user.getUpassword());
+
+        String emailPattern = "[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?";
+        Pattern r_email = Pattern.compile(emailPattern);
+        Matcher m_email = r_email.matcher(user.getUemail());
+
+        if(m_name.find() && m_email.find() && m_pw.find()){
+            if(adminUserDao.updateUser(user)!=0){
+                model.addAttribute("updatemsg", "用户更新成功！");
+            }
+        } else{
+            model.addAttribute("updatemsg", "用户更新失败！输入格式错误！");
         }
+
         // 返回更新界面
         return "forward:/adminUser/ToupdateUser";
     }

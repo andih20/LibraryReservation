@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pojo.User;
 import service.admin.AdminUserService;
@@ -64,7 +65,12 @@ public class AdminUserController {
     public String updateRealUser(String uemail, Model model, HttpSession session){
         return adminUserService.updateRealUser(uemail, model, session);
     }
-
+    // 退出
+    @RequestMapping("/exit")
+    public String exit(@ModelAttribute User user, HttpSession session) {
+        session.invalidate();
+        return "admin/login";
+    }
 
 
 
