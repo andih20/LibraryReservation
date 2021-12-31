@@ -112,7 +112,7 @@
 
             <li>
                 <div class="dropdown">
-                    <a>安全退出</a>
+                    <a href="/LibraryReservation_war_exploded/adminUser/exit">安全退出</a>
                 </div>
             </li>
 

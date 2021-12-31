@@ -31,12 +31,14 @@
             <td>姓名：</td>
             <td>
                 <form:input path="uname"/>
+                <span class="name">3-8位英文或数字组成</span>
             </td>
         </tr>
         <tr>
             <td>密码：</td>
             <td>
                 <form:password path="upassword" maxlength="20"/>
+                <span class="password">6-18位英文或数字组成</span>
             </td>
         </tr>
         <tr>

@@ -46,7 +46,7 @@
 
             <c:if test="${SelectUserInfo.size() != 0 }">
                 <tr>
-                    <td colspan="3"><h2>${SelectuserExitmsg}</h2></td>
+                    <td><h2>${SelectuserExitmsg}</h2></td>
                 </tr>
                 <tr>
                     <th>用户名</th>
