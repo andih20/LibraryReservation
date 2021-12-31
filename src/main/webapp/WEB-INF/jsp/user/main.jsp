@@ -9,40 +9,42 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>图书馆预定系统</title>
     <script type="text/javascript">
-<%--        <%Floor floor = (Floor)session.getAttribute("floor");%>--%>
         //查看个人信息
         function user_info(){
-
+            document.forms[0].action = "${pageContext.request.contextPath}/toUser_info";
+            document.forms[0].submit();
         }
         //预定座位
         function reservationSeat(){
 
         }
+        function lay(floor){
+            switch (floor){
+                case 1:{<% session.setAttribute("lay",1);%>break;}
+                case 2:{<% session.setAttribute("lay",2);%>break;}
+                case 3:{<% session.setAttribute("lay",3);%>break;}
+                case 4:{<% session.setAttribute("lay",4);%>break;}
+                case 5:{<% session.setAttribute("lay",5);%>break;}
+                default :<%session.setAttribute("lay",1);%>
+            }
+            document.forms[0].submit();
+        }
     </script>
 </head>
 <body>
 <%--@elvariable id="user" type="pojo"--%>
-<form:form action="" method="post">
+<jsp:useBean id="floor" class="pojo.Floor" scope="session" />
+<form:form action="${pageContext.request.contextPath}/toMain" method="post">
     欢迎-- ${user.uname}<br>
     <input type="button" onclick="user_info()" value="查看个人信息"><br><br>
     请选择楼层:
     <table>
         <tr>
-<%--            <td><a onclick="function floor(){--%>
-<%--                    <%floor.setId(1);session.setAttribute("floor",floor);%>--%>
-<%--                    }">第一层</a></td>--%>
-<%--            <td><a onclick="function floor(){--%>
-<%--                    <%floor.setId(2);session.setAttribute("floor",floor);%>--%>
-<%--                    }">第二层</a></td>--%>
-<%--            <td><a onclick="function floor(){--%>
-<%--                    <%floor.setId(3);session.setAttribute("floor",floor);%>--%>
-<%--                    }">第三层</a></td>--%>
-<%--            <td><a onclick="function floor(){--%>
-<%--                    <%floor.setId(4);session.setAttribute("floor",floor);%>--%>
-<%--                    }">第四层</a></td>--%>
-<%--            <td><a onclick="function floor(){--%>
-<%--                    <%floor.setId(5);session.setAttribute("floor",floor);%>--%>
-<%--                    }">第五层</a></td>--%>
+            <td><input type="button" value="第一层" onclick="lay(1)"></td>
+            <td><input type="button" value="第二层" onclick="lay(2)"></td>
+            <td><input type="button" value="第三层" onclick="lay(3)"></td>
+            <td><input type="button" value="第四层" onclick="lay(4)"></td>
+            <td><input type="button" value="第五层" onclick="lay(5)"></td>
         </tr>
     </table>
     <table style="border: 1px;color: black">

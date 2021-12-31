@@ -17,7 +17,7 @@
     </insert>
 
 <!--    查找一个用户-->
-    <select id="queryUser" parameterType="User" resultType="User">
+    <select id="queryUser" parameterType="User" resultMap="user">
         select * from user where uname=#{uname} and upassword=#{upassword}
     </select>
 
