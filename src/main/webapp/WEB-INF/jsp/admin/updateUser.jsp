@@ -39,7 +39,6 @@
             <table>
                 <tr>
                     <td>请输入您想查询的用户邮箱:</td>
-                    <td><input type="button" value="返回" onclick="returnAdmin()"></td>
                     <td>
                         <form:input path="uemail"/>
                     </td>
@@ -50,7 +49,9 @@
                         <input type="reset" value="重置" />
                     </td>
                 </tr>
-
+                <tr>
+                    <td><input type="button" value="返回主界面" onclick="returnAdmin()"></td>
+                </tr>
 
                 <c:if test="${UpdateUserInfo.size() != 0 }">
                     <tr>

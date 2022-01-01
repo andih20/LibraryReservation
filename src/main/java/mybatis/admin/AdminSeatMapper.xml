@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.admin.AdminSeatDao">
+    <!-- 查找所有座位 -->
+    <select id="selectAllSeat" resultType="Seat">
+        select * from seat
+    </select>
+
+    <!-- 分页查询所有座位 -->
+    <select id="selectAllSeatByPage" resultType="Seat" parameterType="map">
+        select * from seat order by id limit #{startIndex}, #{perPageSize}
+    </select>
+
+    <!-- 按层数分页查询所有座位 -->
+    <select id="selectAllSeatByFloorANDPage" resultType="Seat" parameterType="map">
+        select * from seat where floor = #{floor} order by id limit #{startIndex}, #{perPageSize}
+    </select>
+   <!-- 按层数查询所有座位 -->
+    <select id="selectSeatByFloor" resultType="Seat" parameterType="Integer">
+        select * from seat where floor = #{floor}
+    </select>
+
+    <!-- 按层数查询所有空闲座位 -->
+    <select id="selectEmptySeatByFloor" resultType="Seat" parameterType="Seat">
+        select * from seat where floor = #{floor} and isempty = true and impair = false
+    </select>
+
+    <!-- 查询所有损坏座位 -->
+    <select id="selectAllImpairSeat" resultType="Seat" parameterType="map">
+        select * from seat where impair = true order by id limit #{startIndex}, #{perPageSize}
+    </select>
+    <select id="selectImpairSeat" resultType="Seat">
+        select * from seat where impair = true
+    </select>
+
+</mapper>

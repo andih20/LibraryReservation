@@ -15,6 +15,7 @@
 <!--        //admin-->
         <mapper resource="mybatis/admin/AdminMapper.xml"/>
         <mapper resource="mybatis/admin/AdminUserMapper.xml"/>
+        <mapper resource="mybatis/admin/AdminSeatMapper.xml"/>
 <!--        //user-->
         <mapper resource="mybatis/user/UserMapper.xml"/>
         <mapper resource="mybatis/user/SeatMapper.xml"/>

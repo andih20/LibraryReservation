@@ -69,7 +69,9 @@
                         <a>添加座位</a>
                         <a>删除座位</a>
                         <a>修改座位</a>
-                        <a>查找座位</a>
+                        <a href="/LibraryReservation_war_exploded/adminSeat/selectSeatByPage">查询座位</a>
+                        <a href="/LibraryReservation_war_exploded/adminSeat/selectImpairSeat">查询损坏座位</a>
+                        <a href="/LibraryReservation_war_exploded/adminSeat/selectEmptySeatByFloor">查询空闲座位</a>
                     </div>
                 </div>
             </li>

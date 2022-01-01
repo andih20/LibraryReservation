@@ -25,7 +25,6 @@
     <table>
         <tr>
             <td>后台更新用户</td>
-            <td><input type="button" value="返回" onclick="returnAdmin()"></td>
         </tr>
         <tr>
             <td>姓名：</td>
@@ -43,9 +42,12 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="确定" />
-                <input type="reset" value="重置"/>
+                <input type="submit" value="确定"/>
+                <input type="reset" value="重置" />
             </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="返回主界面" onclick="returnAdmin()"></td>
         </tr>
     </table>
 

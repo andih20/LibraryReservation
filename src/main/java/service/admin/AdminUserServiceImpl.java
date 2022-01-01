@@ -47,7 +47,7 @@ public class AdminUserServiceImpl implements AdminUserService {
         if (adminUserDao.selectUserByEmail(uemail).size()>0){
             model.addAttribute("Selectmsg", "用户查找成功！");
         }
-        // 返回删除用户界面
+        // 返回查询用户界面
         return "forward:/adminUser/ToselectUser";
     }
 
