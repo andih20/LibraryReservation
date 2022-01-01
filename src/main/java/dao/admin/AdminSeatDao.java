@@ -24,6 +24,7 @@ public interface AdminSeatDao {
     public List<Seat> selectSeatByFloor(Integer floor);
     // 按层查询空闲座位
     public List<Seat> selectEmptySeatByFloor(Seat seat);
+    public List<Seat> selectEmptySeatByFloorANDPage(Map<String, Object> map);
     // 查询所有损坏座位
     public List<Seat> selectAllImpairSeat(Map<String, Object> map);
     public List<Seat> selectImpairSeat();

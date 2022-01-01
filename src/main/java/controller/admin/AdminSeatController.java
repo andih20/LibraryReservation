@@ -17,24 +17,17 @@ public class AdminSeatController {
     private AdminSeatService adminSeatService;
 
     @RequestMapping("/ToselectSeat")
-    public String ToselectSeat(Integer floor, Model model, HttpSession session,Integer pageCur){
-        return adminSeatService.ToselectSeat(floor, model, session, pageCur);
+    public String ToselectSeat(Integer floor, Model model, Integer pageCur, Map<String, Object> map){
+        return adminSeatService.ToselectSeat(floor, model, pageCur, map);
     }
-//    @RequestMapping("/selectSeat")
-//    public String selectSeat(Integer floor, Model model, HttpSession session){
-//        return adminSeatService.selectSeat(floor, model,session);
-//
-//    }
+
     @RequestMapping("/selectImpairSeat")
     public String selectImpairSeat(Model model, Integer pageCur, Map<String, Object> map){
         return adminSeatService.selectImpairSeat(model, pageCur, map);
     }
     @RequestMapping("/selectEmptySeatByFloor")
-    public String selectEmptySeatByFloor(Seat seat, Model model){
-        return adminSeatService.selectEmptySeatByFloor(seat,model);
+    public String selectEmptySeatByFloor(Seat seat, Model model, Integer pageCur, Map<String, Object> map){
+        return adminSeatService.selectEmptySeatByFloor(seat, model, pageCur, map);
     }
-    @RequestMapping("/selectSeatByPage")
-    public String selectSeatByPage(Model model, Integer pageCur, HttpSession session){
-        return adminSeatService.selectSeatByPage(model, pageCur,session);
-    }
+
 }

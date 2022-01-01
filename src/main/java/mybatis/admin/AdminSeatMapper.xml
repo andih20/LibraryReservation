@@ -27,6 +27,10 @@
     <select id="selectEmptySeatByFloor" resultType="Seat" parameterType="Seat">
         select * from seat where floor = #{floor} and isempty = true and impair = false
     </select>
+    <!-- 按层数，分页查询所有空闲座位 -->
+    <select id="selectEmptySeatByFloorANDPage" resultType="Seat" parameterType="map">
+        select * from seat where floor = #{floor} and isempty = true and impair = false order by id limit #{startIndex}, #{perPageSize}
+    </select>
 
     <!-- 查询所有损坏座位 -->
     <select id="selectAllImpairSeat" resultType="Seat" parameterType="map">

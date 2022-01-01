@@ -51,9 +51,9 @@
             <tr>
                 <td><input type="button" value="返回主界面" onclick="returnAdmin()"></td>
             </tr>
-            <c:if test="${SelectEmptyFloorInfo.size()!=0}">
+            <c:if test="${SelectAllEmptySeatInfo.size()!=0}">
                 <tr>
-                    <td><h2>${SelectseatExitmsg}</h2></td>
+                    <td><h2>${SelectEmptyseatExitmsg}</h2></td>
                 </tr>
                 <tr>
                     <th>座位号</th>
@@ -69,16 +69,37 @@
                         <td>${seat.floor}</td>
                     </tr>
                 </c:forEach>
+                <tr>
+                    <td colspan="5" align="right">
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;共${totalCount}条记录&nbsp;&nbsp;共${totalPage}页&nbsp;&nbsp;
+                        第${pageCur}页&nbsp;&nbsp;
+                        <c:url var="url_pre" value="/adminSeat/selectEmptySeatByFloor">
+                            <c:param name="pageCur" value="${pageCur - 1 }"/>
+                        </c:url>
+                        <c:url var="url_next" value="/adminSeat/selectEmptySeatByFloor">
+                            <c:param name="pageCur" value="${pageCur + 1 }"/>
+                        </c:url>
+                        <!-- 第一页没有上一页 -->
+                        <c:if test="${pageCur != 1 }">
+                            <a href="${url_pre}&&floor=${floor}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </c:if>
+                        <!-- 最后一页，没有下一页 -->
+                        <c:if test="${pageCur != totalPage && totalPage != 0}">
+                            <a href="${url_next}&&floor=${floor}">下一页</a>
+                        </c:if>
+                    </td>
+                </tr>
             </c:if>
 
-            <c:if test="${SelectEmptyFloorInfo.size()==0}">
+            <c:if test="${SelectAllEmptySeatInfo.size()==0}">
                 <tr>
                     <th>座位号</th>
                     <th>是否空闲</th>
                     <th>是否损坏</th>
                     <th>所在层数</th>
                 </tr>
-                <c:forEach items="${SelectAllSeatInfo}" var="seat">
+                <c:forEach items="${SelectAllSeatInfoByPage}" var="seat">
                     <tr>
                         <td>${seat.id}</td>
                         <td>${seat.isempty}</td>
@@ -86,6 +107,27 @@
                         <td>${seat.floor}</td>
                     </tr>
                 </c:forEach>
+                <tr>
+                    <td colspan="5" align="right">
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;共${totalCount}条记录&nbsp;&nbsp;共${totalPage}页&nbsp;&nbsp;
+                        第${pageCur}页&nbsp;&nbsp;
+                        <c:url var="url_pre" value="/adminSeat/selectEmptySeatByFloor">
+                            <c:param name="pageCur" value="${pageCur - 1 }"/>
+                        </c:url>
+                        <c:url var="url_next" value="/adminSeat/selectEmptySeatByFloor">
+                            <c:param name="pageCur" value="${pageCur + 1 }"/>
+                        </c:url>
+                        <!-- 第一页没有上一页 -->
+                        <c:if test="${pageCur != 1 }">
+                            <a href="${url_pre}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </c:if>
+                        <!-- 最后一页，没有下一页 -->
+                        <c:if test="${pageCur != totalPage && totalPage != 0}">
+                            <a href="${url_next}">下一页</a>
+                        </c:if>
+                    </td>
+                </tr>
             </c:if>
 
         </table>
