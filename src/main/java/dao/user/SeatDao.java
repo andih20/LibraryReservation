@@ -11,4 +11,6 @@ import java.util.List;
 @Mapper
 public interface SeatDao {
     List<Seat> getAllSeatByFloor(Floor floor);
+
+    Seat getSeatById(int id);
 }

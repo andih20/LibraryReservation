@@ -10,4 +10,5 @@ public interface RecordingService {
     //通过User的Id查找使用记录
     List<Recording> QueryRecordingByUser(User user);
 
+    void AddRecording(Recording recording);
 }

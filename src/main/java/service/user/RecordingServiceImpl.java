@@ -17,4 +17,9 @@ public class RecordingServiceImpl implements RecordingService {
     public List<Recording> QueryRecordingByUser(User user) {
         return recordingDao.queryRecordingByUser(user);
     }
+
+    @Override
+    public void AddRecording(Recording recording) {
+        recordingDao.addRecording(recording);
+    }
 }

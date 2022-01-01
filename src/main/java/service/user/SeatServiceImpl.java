@@ -18,4 +18,9 @@ public class SeatServiceImpl implements SeatService{
         return seatDao.getAllSeatByFloor(floor);
     }
 
+    @Override
+    public Seat GetSeatById(int id) {
+        return seatDao.getSeatById(id);
+    }
+
 }

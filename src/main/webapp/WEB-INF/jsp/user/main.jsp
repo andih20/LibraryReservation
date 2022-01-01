@@ -14,23 +14,37 @@
             document.forms[0].action = "${pageContext.request.contextPath}/toUser_info";
             document.forms[0].submit();
         }
+        //扫码签到
+        function scan_code1(){
+            document.forms[0].action = "${pageContext.request.contextPath}/toScancode";
+            document.forms[0].submit();
+        }
+        //离开签到
+        function scan_code2(){
+            document.forms[0].action = "${pageContext.request.contextPath}/toScancode";
+            document.forms[0].submit();
+        }
+
         //预定座位
         function reservationSeat(){
 
         }
-        function lay(floor){
-            switch (floor){
+        //选择楼层
+        function lay(floor_lay){
+            const hidden = document.getElementById("floor_lay");
+
+            switch (floor_lay){
                 case 1:
-                    alert("1")
+                    hidden.setAttribute("floor_lay","1");
                     break;
                 case 2:
-                    alert("2")
+                    hidden.setAttribute("floor_lay","2");
                     break;
                 case 3:
-                    alert(3);
-                    break;
+                    hidden.setAttribute("floor_lay","3");
+                    break
             }
-            // document.forms[0].submit();
+            document.forms[0].submit();
         }
     </script>
 </head>
@@ -40,19 +54,25 @@
 <form:form action="${pageContext.request.contextPath}/toMain" method="post">
     欢迎-- ${user.uname}<br>
     <input type="button" onclick="user_info()" value="查看个人信息"><br><br>
+
+    <input type="button" value="扫码签到" onclick="scan_code1()"/>
+    <input type="hidden" value="离开签到" onclick="scan_code2()"><br><br>
+
     请选择楼层:
-    <input type="hidden" name="lay">
-    <table>
-        <tr>
-            <td><input type="submit" value="第一层" onclick="<%session.setAttribute("lay",1);%>"></td>
-            <td><input type="submit" value="第二层" onclick="<%session.setAttribute("lay",2);%>"></td>
-            <td><input type="submit" value="第三层" onclick="<%session.setAttribute("lay",3);%>"></td>
-            <td><input type="submit" value="第四层" onclick="<%session.setAttribute("lay",4);%>"></td>
-            <td><input type="submit" value="第五层" onclick="<%session.setAttribute("lay",1);%>"></td>
+<%--    <%session.setAttribute("floor_lay",1);%>--%>
+    <input type="hidden" id="floor_lay" name="floor_lay">
+    <table >
+        <tr >
+            <td><input type="button" value="第一层" onclick="lay(1)"></td>
+            <td><input type="button" value="第二层" onclick="lay(2)"></td>
+            <td><input type="button" value="第三层" onclick="lay(3)"></td>
+            <td><input type="button" value="第四层" onclick="lay(4)"></td>
+            <td><input type="button" value="第五层" onclick="lay(5)"></td>
         </tr>
     </table>
-    <table style="border: 1px;color: black">
-        <tr>
+
+    <table style="border:1px black">
+        <tr style="background-color: blanchedalmond">
             <td>楼层</td>
             <td>座位ID</td>
             <td>是否为空</td>
@@ -60,20 +80,22 @@
             <td>是否预约此座位</td>
         </tr>
         <c:forEach items="${seats}" var="seat">
-            <tr >
+            <tr style="background-color: darkgray">
                 <td>${floor.id}</td>
                 <td>${seat.id}</td>
                 <td>${seat.isempty}</td>
                 <td>${seat.impair}</td>
                 <td>
                     <c:if test="${seat.isempty}">
-                        <input type="button" onclick="reservationSeat()" value="预约">
+                        <c:if test="${!seat.impair}">
+                            <a href="toReservation?id=${seat.id}">预约</a>
+<%--                            <input type="button" onclick="reservationSeat()" value="预约">--%>
+                        </c:if>
                     </c:if>
                 </td>
             </tr>
         </c:forEach>
     </table>
-
 </form:form>
 
 </body>

@@ -73,29 +73,25 @@ public class DispatchController {
         //获取所有座位的使用情况
         Floor floor = new Floor();
         //默认起始页为第一页
-        Integer lay = (Integer) session.getAttribute("lay");
-        if(lay != null){
-            floor.setId(lay); //选页
+        Integer floor_lay = (Integer) session.getAttribute("floor_lay");
+        if(floor_lay != null){
+            floor.setId(floor_lay); //选页
         }else {
             floor.setId(1); //默认第一页
         }
 
         List<Seat> seats = seatService.GetAllSeatByFloor(floor);
         user = (User) session.getAttribute("user");
+        user = userService.QueryUser(user);
         model.addAttribute("seats",seats);
         model.addAttribute("floor",floor);
         model.addAttribute("user",user);
+        session.setAttribute("user",user);
 
         return "user/main";
     }
 
-
-    @RequestMapping("toReservation")
-    public String toReservation(){
-
-        return "user/reservation";
-    }
-
+    //去用户个人信息界面
     @RequestMapping("toUser_info")
     public String toUser_info(HttpSession session){
         //找到个人信息
@@ -109,4 +105,39 @@ public class DispatchController {
 
         return "user/user_info";
     }
+
+    //初始化扫码界面
+    @RequestMapping("toScancode")
+    public String toScancode(){
+        return "user/scancode";
+    }
+    //扫码操作
+    @RequestMapping("scancode")
+    public String scancode(){
+
+
+        return "";
+    }
+
+    //初始化预约界面
+    @RequestMapping("toReservation")
+    public String toReservation(@ModelAttribute("recording")Recording recording,String id,HttpSession session){
+        Seat seat = seatService.GetSeatById(Integer.parseInt(id));
+        session.setAttribute("seat",seat);
+        return "user/reservation";
+    }
+    //处理预约
+    @RequestMapping("reservation")
+    public String reservation(@ModelAttribute("recording") Recording recording,User user, Seat seat, HttpSession session, Model model){
+
+        //添加一个记录
+        user = (User) session.getAttribute("user");
+        seat = (Seat) session.getAttribute("seat");
+        recording.setUser_id(user.getId());
+        recording.setSeat_id(seat.getId());
+        recordingService.AddRecording(recording);
+
+        return "user/main";
+    }
+
 }

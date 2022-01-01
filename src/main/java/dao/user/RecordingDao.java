@@ -11,4 +11,6 @@ import java.util.List;
 @Mapper
 public interface RecordingDao {
     public List<Recording> queryRecordingByUser(User user);
+
+    void addRecording(Recording recording);
 }
