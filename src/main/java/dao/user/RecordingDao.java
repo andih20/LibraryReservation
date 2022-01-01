@@ -13,4 +13,6 @@ public interface RecordingDao {
     public List<Recording> queryRecordingByUser(User user);
 
     void addRecording(Recording recording);
+
+    void signRecordingByUser(User user);
 }

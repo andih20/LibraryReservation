@@ -11,4 +11,6 @@ public interface RecordingService {
     List<Recording> QueryRecordingByUser(User user);
 
     void AddRecording(Recording recording);
+
+    void SignRecordingByUser(User user);
 }

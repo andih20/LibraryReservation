@@ -15,4 +15,9 @@
         insert into recording(user_id,seat_id,start_time,end_time)
         values (#{user_id},#{seat_id},#{start_time},#{end_time})
     </insert>
+
+    <update id="signRecordingByUser" parameterType="User">
+        update recording set presence = 1
+        where MAX (uid) in select * from recording where user_id=#{id}
+    </update>
 </mapper>

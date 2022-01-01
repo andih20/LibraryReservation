@@ -25,6 +25,7 @@ public class DispatchController {
     @Autowired
     private RecordingService recordingService;
 
+
     //登录界面初始化
     @RequestMapping("/toLogin")
     public String toLogin(@ModelAttribute("user") User user){
@@ -69,19 +70,19 @@ public class DispatchController {
 
     //初始化主界面
     @RequestMapping("toMain")
-    public String toMain(User user,HttpSession session, Model model){
+    public String toMain(Floor floor,HttpSession session, Model model){
         //获取所有座位的使用情况
-        Floor floor = new Floor();
+//        Floor floor = new Floor();
         //默认起始页为第一页
-        Integer floor_lay = (Integer) session.getAttribute("floor_lay");
-        if(floor_lay != null){
-            floor.setId(floor_lay); //选页
+//        Integer floor_lay = (Integer) session.getAttribute("floor_lay");
+        if(floor.getId() != null){
+            floor.setId(floor.getId()); //选页
         }else {
             floor.setId(1); //默认第一页
         }
 
         List<Seat> seats = seatService.GetAllSeatByFloor(floor);
-        user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         user = userService.QueryUser(user);
         model.addAttribute("seats",seats);
         model.addAttribute("floor",floor);
@@ -90,6 +91,7 @@ public class DispatchController {
 
         return "user/main";
     }
+
 
     //去用户个人信息界面
     @RequestMapping("toUser_info")
@@ -106,18 +108,22 @@ public class DispatchController {
         return "user/user_info";
     }
 
+
+    //签到
     //初始化扫码界面
-    @RequestMapping("toScancode")
-    public String toScancode(){
-        return "user/scancode";
+    @RequestMapping("toSign")
+    public String toSign(){
+        return "user/sign";
     }
     //扫码操作
-    @RequestMapping("scancode")
-    public String scancode(){
-
+    @RequestMapping("sign")
+    public String sign(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        recordingService.SignRecordingByUser(user);
 
         return "";
     }
+
 
     //初始化预约界面
     @RequestMapping("toReservation")

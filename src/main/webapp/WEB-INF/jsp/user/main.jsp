@@ -16,12 +16,12 @@
         }
         //扫码签到
         function scan_code1(){
-            document.forms[0].action = "${pageContext.request.contextPath}/toScancode";
+            document.forms[0].action = "${pageContext.request.contextPath}/toSign";
             document.forms[0].submit();
         }
         //离开签到
         function scan_code2(){
-            document.forms[0].action = "${pageContext.request.contextPath}/toScancode";
+            document.forms[0].action = "${pageContext.request.contextPath}/toLeave";
             document.forms[0].submit();
         }
 
@@ -31,38 +31,24 @@
         }
         //选择楼层
         function lay(floor_lay){
-            const hidden = document.getElementById("floor_lay");
-
-            switch (floor_lay){
-                case 1:
-                    hidden.setAttribute("floor_lay","1");
-                    break;
-                case 2:
-                    hidden.setAttribute("floor_lay","2");
-                    break;
-                case 3:
-                    hidden.setAttribute("floor_lay","3");
-                    break
-            }
-            document.forms[0].submit();
+            window.location.href = "${pageContext.request.contextPath}/toMain?id="+floor_lay;
         }
     </script>
 </head>
 <body>
 <%--@elvariable id="user" type="pojo"--%>
 <jsp:useBean id="floor" class="pojo.Floor" scope="session" />
-<form:form action="${pageContext.request.contextPath}/toMain" method="post">
+<%--<jsp:useBean id="user" class="pojo.User" scope="session" />--%>
+<form:form action="${pageContext.request.contextPath}/toMain" modelAttribute="floor" method="post">
     欢迎-- ${user.uname}<br>
     <input type="button" onclick="user_info()" value="查看个人信息"><br><br>
 
     <input type="button" value="扫码签到" onclick="scan_code1()"/>
-    <input type="hidden" value="离开签到" onclick="scan_code2()"><br><br>
+    <input type="button" value="离开签到" onclick="scan_code2()"><br><br>
 
     请选择楼层:
-<%--    <%session.setAttribute("floor_lay",1);%>--%>
-    <input type="hidden" id="floor_lay" name="floor_lay">
-    <table >
-        <tr >
+    <table>
+        <tr>
             <td><input type="button" value="第一层" onclick="lay(1)"></td>
             <td><input type="button" value="第二层" onclick="lay(2)"></td>
             <td><input type="button" value="第三层" onclick="lay(3)"></td>
@@ -89,7 +75,6 @@
                     <c:if test="${seat.isempty}">
                         <c:if test="${!seat.impair}">
                             <a href="toReservation?id=${seat.id}">预约</a>
-<%--                            <input type="button" onclick="reservationSeat()" value="预约">--%>
                         </c:if>
                     </c:if>
                 </td>

@@ -22,4 +22,10 @@ public class RecordingServiceImpl implements RecordingService {
     public void AddRecording(Recording recording) {
         recordingDao.addRecording(recording);
     }
+
+    @Override
+    public void SignRecordingByUser(User user) {
+        recordingDao.signRecordingByUser(user);
+    }
+
 }
