@@ -28,6 +28,10 @@
         function lay(floor_lay){
             window.location.href = "${pageContext.request.contextPath}/toMain?id="+floor_lay;
         }
+        //预约座位
+        function reservation(id){
+            window.location.href = "${pageContext.request.contextPath}/toReservation?id="+id;
+        }
     </script>
 </head>
 <body>
@@ -35,7 +39,7 @@
 <jsp:useBean id="floor" class="pojo.Floor" scope="session" />
 <%--<jsp:useBean id="user" class="pojo.User" scope="session" />--%>
 <form:form action="${pageContext.request.contextPath}/toMain" modelAttribute="floor" method="post">
-    欢迎-- ${user.uname}<br>
+    欢迎 -- ${user.uname}<br>
     <input type="button" onclick="user_info()" value="查看个人信息"><br><br>
 
     <input type="button" value="扫码签到" onclick="scan_code1()"/>
@@ -50,32 +54,62 @@
             <td><input type="button" value="第四层" onclick="lay(4)"></td>
             <td><input type="button" value="第五层" onclick="lay(5)"></td>
         </tr>
+    </table><br>
+
+    <table style="border: 1px black; align-content: center;">
+        <tr>
+        <c:forEach items="${seats}" var="seat">
+            <c:if test="${seat.isempty}">
+                <c:if test="${!seat.impair}">
+                    <td style="color: green">
+                        <input type="button" onclick="reservation(${seat.id})" value="预约" style="color: green">
+<%--                        <a style="color: green" href="toReservation?id=${seat.id}">预约</a>--%>
+                    </td>
+                </c:if>
+            </c:if>
+            <c:if test="${!seat.isempty||seat.impair}">
+                <td style="color: red">
+<%--                    <a href="toReservation?id=${seat.id}">预约</a>--%>
+                    <input type="button" onclick="" value="预约" style="color: red">
+                </td>
+            </c:if>
+            <c:if test="${(seats.indexOf(seat)+1)%2==0}">
+                <td>&nbsp;&nbsp;&nbsp;</td>
+            </c:if>
+            <c:if test="${(seats.indexOf(seat)+1)%6==0}">
+                </tr>
+                <tr>
+            </c:if>
+        </c:forEach>
+        </tr>
     </table>
 
-    <table style="border:1px black">
-        <tr style="background-color: blanchedalmond">
-            <td>楼层</td>
-            <td>座位ID</td>
-            <td>是否为空</td>
-            <td>座位是否损坏</td>
-            <td>是否预约此座位</td>
-        </tr>
-        <c:forEach items="${seats}" var="seat">
-            <tr style="background-color: darkgray">
-                <td>${floor.id}</td>
-                <td>${seat.id}</td>
-                <td>${seat.isempty}</td>
-                <td>${seat.impair}</td>
-                <td>
-                    <c:if test="${seat.isempty}">
-                        <c:if test="${!seat.impair}">
-                            <a href="toReservation?id=${seat.id}">预约</a>
-                        </c:if>
-                    </c:if>
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
+    <br>
+    <br>
+<%--    <table style="border:1px black">--%>
+<%--        <tr style="background-color: blanchedalmond">--%>
+<%--            <td>楼层</td>--%>
+<%--            <td>座位ID</td>--%>
+<%--            <td>是否为空</td>--%>
+<%--            <td>座位是否损坏</td>--%>
+<%--            <td>是否预约此座位</td>--%>
+<%--        </tr>--%>
+<%--        <c:forEach items="${seats}" var="seat">--%>
+<%--            <tr style="background-color: darkgray">--%>
+<%--                <td>${floor.id}</td>--%>
+<%--                <td>${seat.id}</td>--%>
+<%--                <td>${seat.isempty}</td>--%>
+<%--                <td>${seat.impair}</td>--%>
+<%--                <td>--%>
+<%--                    <c:if test="${seat.isempty}">--%>
+<%--                        <c:if test="${!seat.impair}">--%>
+<%--                            <a href="toReservation?id=${seat.id}">预约</a>--%>
+<%--                        </c:if>--%>
+<%--                    </c:if>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
+<%--        </c:forEach>--%>
+<%--    </table>--%>
 </form:form>
 
 </body>

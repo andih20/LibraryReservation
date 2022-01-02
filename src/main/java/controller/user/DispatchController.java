@@ -14,7 +14,9 @@ import service.user.SeatService;
 import service.user.UserService;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class DispatchController {
@@ -91,7 +93,7 @@ public class DispatchController {
 
     //去用户个人信息界面
     @RequestMapping("toUser_info")
-    public String toUser_info(HttpSession session){
+    public String toUser_info(HttpSession session,Model model, Integer pageCur, String act){
         //找到个人信息
         User user = (User) session.getAttribute("user");
         user = userService.QueryUser(user);
@@ -99,6 +101,30 @@ public class DispatchController {
 
         //找到个人记录
         List<Recording> recordings = recordingService.QueryRecordingByUser(user);
+        int temp = recordings.size();
+        model.addAttribute("totalCount", temp);
+        int totalPage = 0;
+        if (temp == 0) {
+            totalPage = 0;//总页数
+        } else {
+            //返回大于或者等于指定表达式的最小整数
+            totalPage = (int) Math.ceil((double) temp / 10);
+        }
+        if (pageCur == null) {
+            pageCur = 1;
+        }
+        if ((pageCur - 1) * 10 > temp) {
+            pageCur = pageCur - 1;
+        }
+        //分页查询
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("startIndex", (pageCur - 1) * 10);//起始位置
+        map.put("perPageSize", 10);//每页10个
+        map.put("user_id",user.getId());
+        recordings = recordingService.selectAllRecordingsByPage(map);
+        model.addAttribute("allGoods", recordings);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("pageCur", pageCur);
         session.setAttribute("recordings",recordings);
 
         return "user/user_info";
@@ -114,11 +140,6 @@ public class DispatchController {
     //扫码操作
     @RequestMapping("sign")
     public String sign(HttpSession session){
-        //设置座位不为空
-        Seat seat = (Seat) session.getAttribute("seat");
-        seat.setIsempty(false);
-        seatService.SetSeatIsempty(seat);
-
         //设置记录出席
         Recording recording = (Recording) session.getAttribute("recording");
         recording.setPresence(true);
@@ -155,6 +176,10 @@ public class DispatchController {
     //处理预约
     @RequestMapping("reservation")
     public String reservation(@ModelAttribute("recording") Recording recording,User user, Seat seat, HttpSession session, Model model){
+        //设置座位不为空
+        seat = (Seat) session.getAttribute("seat");
+        seat.setIsempty(false);
+        seatService.SetSeatIsempty(seat);
 
         //添加一个记录
         user = (User) session.getAttribute("user");
@@ -163,6 +188,7 @@ public class DispatchController {
         recording.setSeat_id(seat.getId());
         recordingService.AddRecording(recording);
         session.setAttribute("recording", recording);
+        session.setAttribute("user",user);
 
         return "user/main";
     }

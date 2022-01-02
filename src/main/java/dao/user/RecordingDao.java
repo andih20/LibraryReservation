@@ -6,6 +6,7 @@ import pojo.Recording;
 import pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository("recordingDao")
 @Mapper
@@ -15,4 +16,7 @@ public interface RecordingDao {
     void addRecording(Recording recording);
 
     void signRecording(Recording recording);
+
+    List<Recording> selectAllRecordingsByPage(Map<String, Object> map);
+
 }

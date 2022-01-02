@@ -19,4 +19,9 @@
     <update id="signRecording" parameterType="Recording">
         update recording set presence = 1 where user_id=#{user_id} and seat_id=#{seat_id}
     </update>
+
+    <select id="selectAllRecordingsByPage" parameterType="map" resultType="Recording">
+        select * from recording where user_id = #{user_id} order by uid limit #{startIndex}, #{perPageSize}
+    </select>
+
 </mapper>

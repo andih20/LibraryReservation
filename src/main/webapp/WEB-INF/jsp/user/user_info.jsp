@@ -27,7 +27,7 @@
         密码:${user.upassword}<br>
         邮箱:${user.uemail}<br>
         漏签次数:${user.number}<br>
-        是否进入黑名单:${user.black}<br>
+        是否进入黑名单:${user.black}<br><br>
         座位记录:
         <table style="border:1px black">
             <tr style="background-color: blanchedalmond">
@@ -48,6 +48,27 @@
                     <td>${record.presence}</td>
                 </tr>
             </c:forEach>
+            <tr>
+                <td colspan="5" align="right">
+                    &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;共${totalCount}条记录&nbsp;&nbsp;共${totalPage}页&nbsp;&nbsp;
+                    第${pageCur}页&nbsp;&nbsp;
+                    <c:url var="url_pre" value="toUser_info">
+                        <c:param name="pageCur" value="${pageCur - 1 }"/>
+                    </c:url>
+                    <c:url var="url_next" value="toUser_info">
+                        <c:param name="pageCur" value="${pageCur + 1 }"/>
+                    </c:url>
+                    <!-- 第一页没有上一页 -->
+                    <c:if test="${pageCur != 1 }">
+                        <a href="${url_pre}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </c:if>
+                    <!-- 最后一页，没有下一页 -->
+                    <c:if test="${pageCur != totalPage && totalPage != 0}">
+                        <a href="${url_next}">下一页</a>
+                    </c:if>
+                </td>
+            </tr>
         </table><br>
 
         <c:if test="${user.black}">
