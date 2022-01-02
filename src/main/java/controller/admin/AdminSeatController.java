@@ -30,4 +30,16 @@ public class AdminSeatController {
         return adminSeatService.selectEmptySeatByFloor(seat, model, pageCur, map);
     }
 
+    // 增加座位
+    @RequestMapping("/addSeat")
+    public String addSeat(Seat seat, Model model){
+        return adminSeatService.addSeat(seat, model);
+    }
+
+    // 删除座位
+    @RequestMapping("/deleteSeat")
+    public String deleteSeat(Integer floor, Model model, Integer pageCur, Map<String, Object> map, Seat seat){
+        return adminSeatService.deleteSeat(floor, model, pageCur, map, seat);
+    }
+
 }

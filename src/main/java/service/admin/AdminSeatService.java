@@ -16,5 +16,11 @@ public interface AdminSeatService {
     // 查询空闲且未损坏的座位
     public String selectEmptySeatByFloor(Seat seat, Model model, Integer pageCur, Map<String, Object> map);
 
+    // 添加一个座位
+    public String addSeat(Seat seat, Model model);
+
+    // 删除一个座位
+    public String deleteSeat(Integer floor, Model model, Integer pageCur, Map<String, Object> map, Seat seat);
+
 
 }

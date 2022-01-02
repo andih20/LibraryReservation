@@ -40,4 +40,25 @@
         select * from seat where impair = true
     </select>
 
+    <!-- 按楼层添加座位 -->
+    <insert id="addSeat" parameterType="pojo.Seat">
+        insert into seat (floor) values (#{floor})
+    </insert>
+
+    <!-- 删除座位 -->
+    <delete id="deleteSeat" parameterType="pojo.Seat">
+        delete from seat where id = #{id}
+    </delete>
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>
