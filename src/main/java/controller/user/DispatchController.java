@@ -176,6 +176,11 @@ public class DispatchController {
     //处理预约
     @RequestMapping("reservation")
     public String reservation(@ModelAttribute("recording") Recording recording,User user, Seat seat, HttpSession session, Model model){
+        if(user.getBlack()){
+            session.setAttribute("black", true);
+            return "user/reservation";
+        }
+
         //设置座位不为空
         seat = (Seat) session.getAttribute("seat");
         seat.setIsempty(false);

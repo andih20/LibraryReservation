@@ -59,6 +59,6 @@
 <a style="color: cyan" onclick="toRegister()">如果你还没有账号，请点此处注册</a>
 <br>
 <br>
-<a style="color: cyan" style="color: cyan">如果你是管理员，请点此处</a>
+<a style="color: cyan" style="color: cyan" href="${pageContext.request.contextPath}/admin">如果你是管理员，请点此处</a>
 </body>
 </html>
