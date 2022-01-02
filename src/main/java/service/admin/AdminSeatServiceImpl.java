@@ -107,10 +107,11 @@ public class AdminSeatServiceImpl implements AdminSeatService {
 
     @Override
     public String selectEmptySeatByFloor(Seat seat, Model model, Integer pageCur, Map<String, Object> map) {
-        model.addAttribute("SelectAllSeatInfo",adminSeatDao.selectAllSeat());
+        // model.addAttribute("SelectAllSeatInfo",adminSeatDao.selectAllSeat());
+        model.addAttribute("SelectAllSeatInfo", adminSeatDao.selectEmptySeat());
         model.addAttribute("SelectAllEmptySeatInfo",adminSeatDao.selectEmptySeatByFloor(seat));
 
-        List<Seat> allSeat = adminSeatDao.selectAllSeat();
+        List<Seat> allSeat = adminSeatDao.selectEmptySeat();
         if(adminSeatDao.selectEmptySeatByFloor(seat).size()!=0) {
             allSeat = adminSeatDao.selectEmptySeatByFloor(seat);
         }
@@ -132,7 +133,7 @@ public class AdminSeatServiceImpl implements AdminSeatService {
         // 分页查询
         map.put("startIndex", (pageCur - 1) * 4); //起始位置
         map.put("perPageSize", 4); //每页 4 个
-        model.addAttribute("SelectAllSeatInfoByPage",adminSeatDao.selectAllSeatByPage(map));
+        model.addAttribute("SelectAllSeatInfoByPage",adminSeatDao.selectAllEmptySeatByPage(map));
         model.addAttribute("allSeat", allSeat);
         map.put("floor", seat.getFloor());
         model.addAttribute("floor", seat.getFloor());
@@ -215,6 +216,65 @@ public class AdminSeatServiceImpl implements AdminSeatService {
             model.addAttribute("msg", "座位删除成功！");
         }
         return "admin/deleteSeat";
+    }
+
+    @Override
+    public String updateSeat(Seat seat, Model model, Integer floor, Integer pageCur, Map<String, Object> map) {
+        if(seat.getId()!=null){
+            if (adminSeatDao.updateSeat(seat)>0){
+                model.addAttribute("msg", "座位信息更新成功！");
+            }
+        }
+
+        List<Seat> allSeat = adminSeatDao.selectAllSeat();
+        model.addAttribute("AllSeat",adminSeatDao.selectAllSeat());
+        model.addAttribute("SelectSeatInfoByFloor",adminSeatDao.selectSeatByFloor(floor));
+        if(adminSeatDao.selectSeatByFloor(floor).size()!=0) {
+            allSeat = adminSeatDao.selectSeatByFloor(floor);
+        }
+        int temp = allSeat.size();
+        model.addAttribute("totalCount", temp);
+        int totalPage = 0;
+        if (temp == 0) {
+            totalPage = 0;//总页数
+        } else {
+            //返回大于或者等于指定表达式的最小整数
+            totalPage = (int) Math.ceil((double) temp / 4);
+        }
+        if (pageCur == null) {
+            pageCur = 1;
+        }
+        if ((pageCur - 1) * 4 > temp) {
+            pageCur = pageCur - 1;
+        }
+        // 分页查询
+        map.put("startIndex", (pageCur - 1) * 4); //起始位置
+        map.put("perPageSize", 4); //每页 4 个;
+        model.addAttribute("SelectAllSeatInfo",adminSeatDao.selectAllSeatByPage(map));
+
+        model.addAttribute("allSeat", allSeat);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("pageCur", pageCur);
+
+        map.put("floor", floor);
+        model.addAttribute("floor", floor);
+
+        if(adminSeatDao.selectSeatByFloor(floor).size()!=0){
+            if(adminSeatDao.selectAllSeatByPage(map).size()!=0){
+                model.addAttribute("SelectseatExitmsg","已找到");
+                model.addAttribute("SelectFloorInfo",adminSeatDao.selectAllSeatByFloorANDPage(map));
+            }
+        }
+
+        return "admin/updateSeat";
+    }
+
+    @Override
+    public String updateRealSeat(Seat seat, Model model) {
+        if (seat.getId()!=null){
+            model.addAttribute("SeatId",seat.getId());
+        }
+        return "admin/updateRealSeat";
     }
 
 

@@ -13,7 +13,10 @@
     <select id="selectAllSeatByPage" resultType="Seat" parameterType="map">
         select * from seat order by id limit #{startIndex}, #{perPageSize}
     </select>
-
+    <!-- 分页查询所有空闲座位 -->
+    <select id="selectAllEmptySeatByPage" resultType="Seat" parameterType="map">
+        select * from seat where isempty = true and impair = false order by id limit #{startIndex}, #{perPageSize}
+    </select>
     <!-- 按层数分页查询所有座位 -->
     <select id="selectAllSeatByFloorANDPage" resultType="Seat" parameterType="map">
         select * from seat where floor = #{floor} order by id limit #{startIndex}, #{perPageSize}
@@ -23,6 +26,10 @@
         select * from seat where floor = #{floor}
     </select>
 
+    <!-- 查询所有空座位 -->
+    <select id="selectEmptySeat" resultType="Seat">
+        select * from seat where isempty = true and impair = false
+    </select>
     <!-- 按层数查询所有空闲座位 -->
     <select id="selectEmptySeatByFloor" resultType="Seat" parameterType="Seat">
         select * from seat where floor = #{floor} and isempty = true and impair = false
@@ -50,7 +57,10 @@
         delete from seat where id = #{id}
     </delete>
 
-
+    <!-- 更新座位使用情况 -->
+    <update id="updateSeat" parameterType="pojo.Seat">
+        update seat set impair = #{impair}, isempty = #{isempty} where id = #{id}
+    </update>
 
 
 

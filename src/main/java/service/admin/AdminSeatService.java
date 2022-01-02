@@ -22,5 +22,7 @@ public interface AdminSeatService {
     // 删除一个座位
     public String deleteSeat(Integer floor, Model model, Integer pageCur, Map<String, Object> map, Seat seat);
 
-
+    // 更新一个座位信息
+    public String updateSeat(Seat seat, Model model, Integer floor, Integer pageCur, Map<String, Object> map);
+    public String updateRealSeat(Seat seat, Model model);
 }

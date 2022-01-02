@@ -16,7 +16,7 @@ public interface AdminSeatDao {
     // 删除座位
     public int deleteSeat(Seat seat);
     // 修改座位情况
-
+    public int updateSeat(Seat seat);
     // 查询所有座位
     public List<Seat> selectAllSeat();
     // 分页查询所有座位
@@ -27,8 +27,11 @@ public interface AdminSeatDao {
     // 按层查询空闲座位
     public List<Seat> selectEmptySeatByFloor(Seat seat);
     public List<Seat> selectEmptySeatByFloorANDPage(Map<String, Object> map);
+    public List<Seat> selectEmptySeat();
+    public List<Seat> selectAllEmptySeatByPage(Map<String, Object> map);
     // 查询所有损坏座位
     public List<Seat> selectAllImpairSeat(Map<String, Object> map);
     public List<Seat> selectImpairSeat();
+
 
 }

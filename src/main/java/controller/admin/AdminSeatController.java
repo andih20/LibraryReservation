@@ -42,4 +42,14 @@ public class AdminSeatController {
         return adminSeatService.deleteSeat(floor, model, pageCur, map, seat);
     }
 
+    // 更新座位信息
+    @RequestMapping("/updateSeat")
+    public String updateSeat(Seat seat, Model model, Integer floor, Integer pageCur, Map<String, Object> map){
+        return adminSeatService.updateSeat(seat, model, floor, pageCur, map);
+    }
+    @RequestMapping("/updateRealSeat")
+    public String updateRealSeat(Seat seat, Model model){
+        return adminSeatService.updateRealSeat(seat, model);
+    }
+
 }
