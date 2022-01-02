@@ -7,12 +7,5 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/libraryreservation?serverTimezone=UTC</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="libraryreservation@localhost" uuid="491d2087-7a0c-4e1f-aa6d-94b20edcf656">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/libraryreservation</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
   </component>
 </project>

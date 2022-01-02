@@ -3,6 +3,8 @@ package dao.admin;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import pojo.Seat;
+import pojo.User;
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,9 +12,9 @@ import java.util.Map;
 @Mapper
 public interface AdminSeatDao {
     // 增加座位
-
+    public int addSeat(Seat seat);
     // 删除座位
-
+    public int deleteSeat(Seat seat);
     // 修改座位情况
 
     // 查询所有座位
@@ -24,6 +26,7 @@ public interface AdminSeatDao {
     public List<Seat> selectSeatByFloor(Integer floor);
     // 按层查询空闲座位
     public List<Seat> selectEmptySeatByFloor(Seat seat);
+    public List<Seat> selectEmptySeatByFloorANDPage(Map<String, Object> map);
     // 查询所有损坏座位
     public List<Seat> selectAllImpairSeat(Map<String, Object> map);
     public List<Seat> selectImpairSeat();

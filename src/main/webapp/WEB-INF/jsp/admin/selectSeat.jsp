@@ -31,16 +31,16 @@
     floors.add(5);
     session.setAttribute("floors",floors);
 %>
-<c:if test="${SelectAllSeatInfo.size()==0}">
+<c:if test="${AllSeat.size()==0}">
     暂无座位！
 </c:if>
-<c:if test="${SelectAllSeatInfo.size()!=0}">
+<c:if test="${AllSeat.size()!=0}">
     <jsp:useBean id="Seat" class="pojo.Seat" scope="request" ></jsp:useBean>
     <%--@elvariable id="Seat" type="pojo"--%>
     <form:form action="${pageContext.request.contextPath}/adminSeat/ToselectSeat" modelAttribute="Seat" method="post">
         <table>
 
-            <c:if test="${SelectFloorInfo.size()!=0}">
+            <c:if test="${SelectSeatInfoByFloor.size()!=0}">
                 <tr>
                     <td><h2>${SelectseatExitmsg}</h2></td>
                 </tr>
@@ -82,7 +82,7 @@
             </tr>
             </c:if>
 
-            <c:if test="${SelectFloorInfo.size()==0}">
+            <c:if test="${SelectSeatInfoByFloor.size()==0}">
                 <tr>
                     <th>座位号</th>
                     <th>是否空闲</th>
@@ -102,10 +102,10 @@
                     &nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;共${totalCount}条记录&nbsp;&nbsp;共${totalPage}页&nbsp;&nbsp;
                     第${pageCur}页&nbsp;&nbsp;
-                    <c:url var="url_pre" value="/adminSeat/selectSeatByPage">
+                    <c:url var="url_pre" value="/adminSeat/ToselectSeat">
                         <c:param name="pageCur" value="${pageCur - 1 }"/>
                     </c:url>
-                    <c:url var="url_next" value="/adminSeat/selectSeatByPage">
+                    <c:url var="url_next" value="/adminSeat/ToselectSeat">
                         <c:param name="pageCur" value="${pageCur + 1 }"/>
                     </c:url>
                     <!-- 第一页没有上一页 -->
