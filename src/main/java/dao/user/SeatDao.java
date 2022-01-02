@@ -13,4 +13,6 @@ public interface SeatDao {
     List<Seat> getAllSeatByFloor(Floor floor);
 
     Seat getSeatById(int id);
+
+    void setSeatIsempty(Seat seat);
 }

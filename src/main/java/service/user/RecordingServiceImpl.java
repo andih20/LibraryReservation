@@ -24,8 +24,8 @@ public class RecordingServiceImpl implements RecordingService {
     }
 
     @Override
-    public void SignRecordingByUser(User user) {
-        recordingDao.signRecordingByUser(user);
+    public void SignRecording(Recording recording) {
+        recordingDao.signRecording(recording);
     }
 
 }

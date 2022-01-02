@@ -12,5 +12,5 @@ public interface RecordingService {
 
     void AddRecording(Recording recording);
 
-    void SignRecordingByUser(User user);
+    void SignRecording(Recording recording);
 }

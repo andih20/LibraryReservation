@@ -71,10 +71,6 @@ public class DispatchController {
     //初始化主界面
     @RequestMapping("toMain")
     public String toMain(Floor floor,HttpSession session, Model model){
-        //获取所有座位的使用情况
-//        Floor floor = new Floor();
-        //默认起始页为第一页
-//        Integer floor_lay = (Integer) session.getAttribute("floor_lay");
         if(floor.getId() != null){
             floor.setId(floor.getId()); //选页
         }else {
@@ -118,10 +114,34 @@ public class DispatchController {
     //扫码操作
     @RequestMapping("sign")
     public String sign(HttpSession session){
-        User user = (User) session.getAttribute("user");
-        recordingService.SignRecordingByUser(user);
+        //设置座位不为空
+        Seat seat = (Seat) session.getAttribute("seat");
+        seat.setIsempty(false);
+        seatService.SetSeatIsempty(seat);
 
-        return "";
+        //设置记录出席
+        Recording recording = (Recording) session.getAttribute("recording");
+        recording.setPresence(true);
+        recordingService.SignRecording(recording);
+
+        return "user/main";
+    }
+
+    //离开签到
+    //初始化扫码界面
+    @RequestMapping("toLeave")
+    public String toLeave(){
+        return "user/leave";
+    }
+    //扫码操作
+    @RequestMapping("leave")
+    public String leave(HttpSession session){
+        //设置座位为空
+        Seat seat = (Seat) session.getAttribute("seat");
+        seat.setIsempty(true);
+        seatService.SetSeatIsempty(seat);
+
+        return "user/main";
     }
 
 
@@ -142,6 +162,7 @@ public class DispatchController {
         recording.setUser_id(user.getId());
         recording.setSeat_id(seat.getId());
         recordingService.AddRecording(recording);
+        session.setAttribute("recording", recording);
 
         return "user/main";
     }

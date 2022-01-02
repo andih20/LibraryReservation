@@ -17,4 +17,8 @@
     <select id="getSeatById" parameterType="Integer" resultType="Seat">
         select * from seat where id = #{id}
     </select>
+
+    <update id="setSeatIsempty" parameterType="Seat" >
+        update seat set isempty = #{isempty} where id = #{id}
+    </update>
 </mapper>

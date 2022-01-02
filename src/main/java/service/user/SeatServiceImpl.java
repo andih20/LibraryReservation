@@ -23,4 +23,10 @@ public class SeatServiceImpl implements SeatService{
         return seatDao.getSeatById(id);
     }
 
+    @Override
+    public void SetSeatIsempty(Seat seat) {
+        seatDao.setSeatIsempty(seat);
+    }
+
+
 }

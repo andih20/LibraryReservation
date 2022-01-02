@@ -14,5 +14,5 @@ public interface RecordingDao {
 
     void addRecording(Recording recording);
 
-    void signRecordingByUser(User user);
+    void signRecording(Recording recording);
 }

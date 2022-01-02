@@ -9,4 +9,6 @@ public interface SeatService {
     List<Seat> GetAllSeatByFloor(Floor floor);
 
     Seat GetSeatById(int id);
+
+    void SetSeatIsempty(Seat seat);
 }

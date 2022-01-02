@@ -24,11 +24,6 @@
             document.forms[0].action = "${pageContext.request.contextPath}/toLeave";
             document.forms[0].submit();
         }
-
-        //预定座位
-        function reservationSeat(){
-
-        }
         //选择楼层
         function lay(floor_lay){
             window.location.href = "${pageContext.request.contextPath}/toMain?id="+floor_lay;
