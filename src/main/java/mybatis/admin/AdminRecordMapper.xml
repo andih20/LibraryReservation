@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.admin.AdminRecordDao">
+    <!-- 查询所有预约 -->
+    <select id="selectAllRecord" resultType="Recording">
+        select * from recording
+    </select>
+
+    <!-- 分页查询所有预约 -->
+    <select id="selectAllRecordByPage" resultType="map" parameterType="map">
+        select * from user,seat,recording
+        where 1=1
+        and user.id = recording.user_id
+        and seat.id = recording.seat_id
+        order by uid limit #{startIndex}, #{perPageSize}
+    </select>
+
+
+</mapper>
+
