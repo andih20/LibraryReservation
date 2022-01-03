@@ -40,7 +40,6 @@ public class AdminRecordServiceImpl implements AdminRecordService {
         // 分页查询
         map.put("startIndex", (pageCur - 1) * 4); //起始位置
         map.put("perPageSize", 4); //每页 4 个;
-        Map<String,String> RecordMap = new HashMap<>();
 
         List<String> recordList = new ArrayList<String>();
         recordList = adminRecordDao.selectAllRecordByPage(map);

@@ -21,4 +21,5 @@ public interface AdminUserDao {
     public List<User> selectAllUser();
     // 按 email 查询用户
     public List<User> selectUserByEmail(String uemail);
+
 }

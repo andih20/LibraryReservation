@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.admin.AdminBlackDao">
+    <!-- 将用户添加至黑名单 -->
+    <insert id="addUserToBlack" parameterType="pojo.User">
+        insert into blacklist (uid) values (#{id})
+    </insert>
+
+    <delete id="deleteUserOutBalck" parameterType="pojo.User">
+        delete from blacklist where uid = #{id}
+    </delete>
+
+    <select id="selectAllBlackUser" resultType="User">
+        select * from blacklist
+    </select>
+
+    <select id="selectAllBlackUserByPage" resultType="map" parameterType="map">
+        select * from blacklist, user
+        where 1=1
+        and user.id = blacklist.uid
+        order by uid limit #{startIndex}, #{perPageSize}
+    </select>
+
+</mapper>

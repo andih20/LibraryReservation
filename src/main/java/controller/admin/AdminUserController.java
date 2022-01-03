@@ -3,20 +3,26 @@ package controller.admin;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pojo.User;
+import service.admin.AdminBlackService;
 import service.admin.AdminUserService;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/adminUser")
 public class AdminUserController {
     @Autowired
     private AdminUserService adminUserService;
+    @Autowired
+    private AdminBlackService adminBlackService;
 
     // 到删除界面
     @RequestMapping("/TodeleteUser")
@@ -65,6 +71,18 @@ public class AdminUserController {
     public String updateRealUser(String uemail, Model model, HttpSession session){
         return adminUserService.updateRealUser(uemail, model, session);
     }
+
+    // 加入黑名单
+    @RequestMapping("/selectBlackUser")
+    public String selectBlackUser(Model model, Integer pageCur, Map<String, Object> map){
+        return adminBlackService.selectUser(model, pageCur, map);
+    }
+
+    @RequestMapping("/deleteBlackUser")
+    public String deleteBlackUser(User user, Model model){
+        return adminBlackService.deleteUser(user, model);
+    }
+
     // 退出
     @RequestMapping("/exit")
     public String exit(@ModelAttribute User user, HttpSession session) {
