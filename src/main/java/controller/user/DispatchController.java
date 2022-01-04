@@ -99,7 +99,7 @@ public class DispatchController {
 
     //去用户个人信息界面
     @RequestMapping("toUser_info")
-    public String toUser_info(HttpSession session,Model model, Integer pageCur, String act){
+    public String toUser_info(HttpSession session,Model model, Integer pageCur){
         //找到个人信息
         User user = (User) session.getAttribute("user");
         user = userService.QueryUser(user);

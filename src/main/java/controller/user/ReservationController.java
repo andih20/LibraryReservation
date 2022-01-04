@@ -43,11 +43,12 @@ public class ReservationController {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date curDate = new Date(System.currentTimeMillis());
         Date start_time = dateFormat.parse(recording.getStart_time());
-        if (curDate.after(start_time)){
+        if (curDate.before(start_time)){
             //已经迟到
             session.setAttribute("late", true);
             return "user/sign";
         }
+//        if(curDate.getTime()-start_time.getTime()>0)
 
         //设置座位不为空
         seat.setIsempty(false);
@@ -55,6 +56,8 @@ public class ReservationController {
 
         //设置记录出席
         recording.setPresence(true);
+        recording.setEnd_presence(false);
+        session.setAttribute("recording",recording);
         recordingService.SignRecording(recording);
 
         return "user/main";
@@ -76,14 +79,17 @@ public class ReservationController {
 
         //正常两次签到,更改用户信息
         Recording recording = (Recording) session.getAttribute("recording");
-        if(recording.getPresence() && recording.getEnd_presence()){
+        if(recording.getPresence() && !recording.getEnd_presence()){
             User user = (User) session.getAttribute("user");
+            user = userService.QueryUser(user);
             user.setNumber(user.getNumber()-1);
             userService.updateUser(user);
+            session.setAttribute("user",user);
         }
 
         //设置记录出席
         recording.setEnd_presence(true);
+        session.setAttribute("recording",recording);
         recordingService.SignRecording(recording);
 
         return "user/main";
@@ -100,6 +106,7 @@ public class ReservationController {
     //处理预约
     @RequestMapping("reservation")
     public String reservation(@ModelAttribute("recording") Recording recording, User user, HttpSession session){
+        user = (User) session.getAttribute("user");
         //已加入黑名单者，不得预约
         if(user.getBlack()){
             session.setAttribute("black", true);

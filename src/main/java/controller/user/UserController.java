@@ -22,15 +22,15 @@ public class UserController {
     }
     //用户修改个人信息，返回主界面
     @RequestMapping("updateUser")
-    public String updateUser(@ModelAttribute("user") User new_user, HttpSession session){
+    public String updateUser(@ModelAttribute("User") User user, HttpSession session){
         //设置新值
-        User user = (User) session.getAttribute("user");
-        user.setUname(new_user.getUname());
-        user.setUpassword(new_user.getUpassword());
-        user.setUemail(new_user.getUemail());
+        User new_user = (User) session.getAttribute("user");
+        new_user.setUname(user.getUname());
+        new_user.setUpassword(user.getUpassword());
+        new_user.setUemail(user.getUemail());
         //更新用户信息
-        userService.updateUser(user);
-        session.setAttribute("user",user);
+        userService.updateUser(new_user);
+        session.setAttribute("user",new_user);
         return "user/main";
     }
 
@@ -42,19 +42,21 @@ public class UserController {
     }
     //用户注销，返回登录界面
     @RequestMapping("deleteUser")
-    public String deleteUser(HttpSession session){
-        User user = (User) session.getAttribute("user");
+    public String deleteUser(@ModelAttribute("user") User user,HttpSession session){
+        user = (User) session.getAttribute("user");
         return userService.deleteUser(user);
     }
 
 
     //用户退出，返回登录界面
-    @RequestMapping("toQiut")
-    public String toQuit(HttpSession session){
+    @RequestMapping("toQuit")
+    public String toQuit(@ModelAttribute("user") User user,HttpSession session){
         //移除user，拦截器监听user是否存在
         //如果user存在，则返回主界面
         //如果user不存在，则返回登录界面
+//        session.invalidate();
+//        session.setAttribute("user",null);
         session.removeAttribute("user");
-        return "user/main";
+        return "user/login";
     }
 }

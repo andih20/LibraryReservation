@@ -21,7 +21,7 @@
         select * from user where uname=#{uname} and upassword=#{upassword}
     </select>
 
-    <!--    查找一个用户通过email&name-->
+    <!--    查找一个用户通过email-->
     <select id="queryUserByEmail" parameterType="User" resultMap="user">
         select * from user where uemail=#{uemail}
     </select>

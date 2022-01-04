@@ -19,7 +19,7 @@
         <h3>"你已经迟到，签到无效"</h3>
     </c:if>
     <form action="${pageContext.request.contextPath}/sign" method="post">
-        <input type="button" name="return" value="返回主界面" onclick="lay(1)">
+        <input type="button" onclick="toMain()" value="返回主界面"/>
         <input type="submit" name="submit" value="签到"><br>
     </form>
 </body>
