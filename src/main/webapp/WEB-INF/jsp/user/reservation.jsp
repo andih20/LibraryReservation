@@ -30,8 +30,8 @@
 <%--            <input type="date" name="date">--%>
 <%--        </label>--%>
         <br>
-        开始时间:<form:input path="start_time"/>(HH-MM)<br>
-        结束时间:<form:input path="end_time"/>(HH-MM)<br><br>
+        开始时间:<form:input path="start_time"/>(HH:MM)<br>
+        结束时间:<form:input path="end_time"/>(HH:MM)<br><br>
 
         <input type="reset" id="reset" value="重置"/>
         <input type="submit" id="submit" value="提交"/>

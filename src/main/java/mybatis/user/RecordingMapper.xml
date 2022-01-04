@@ -7,19 +7,23 @@
 <!--        <id property="uid" column="uid"/>-->
 <!--        <result column="user_id" property=""-->
 <!--    </resultMap>-->
+<!--    //通过用户查找使用记录-->
     <select id="queryRecordingByUser" parameterType="User" resultType="Recording">
         select * from recording where user_id=#{id}
     </select>
 
+<!--    //增加一个记录信息-->
     <insert id="addRecording" parameterType="Recording" keyProperty="uid" useGeneratedKeys="true">
         insert into recording(user_id,seat_id,start_time,end_time)
         values (#{user_id},#{seat_id},#{start_time},#{end_time})
     </insert>
 
+<!--    //设置该记录出席情况（开始签到，离开签到）-->
     <update id="signRecording" parameterType="Recording">
-        update recording set presence = 1 where user_id=#{user_id} and seat_id=#{seat_id}
+        update recording set presence = #{presence},end_presence=#{end_presence} where user_id=#{user_id} and seat_id=#{seat_id}
     </update>
 
+<!--    //按页查询所有的记录-->
     <select id="selectAllRecordingsByPage" parameterType="map" resultType="Recording">
         select * from recording where user_id = #{user_id} order by uid limit #{startIndex}, #{perPageSize}
     </select>

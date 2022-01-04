@@ -36,7 +36,8 @@
                 <td>座位ID</td>
                 <td>开始时间</td>
                 <td>结束时间</td>
-                <td>是否出席</td>
+                <td>是否开始签到</td>
+                <td>是否离开签到</td>
             </tr>
             <c:forEach items="${recordings}" var="record">
                 <tr style="background-color: darkgray">
@@ -46,6 +47,7 @@
                     <td>${record.start_time}</td>
                     <td>${record.end_time}</td>
                     <td>${record.presence}</td>
+                    <td>${record.end_presence}</td>
                 </tr>
             </c:forEach>
             <tr>

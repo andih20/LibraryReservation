@@ -11,6 +11,15 @@ public class Recording {
     private String start_time;  // 预约开始时间
     private String end_time;    // 预约结束时间
     private Boolean presence;   // 是否缺席，默认是 false未出席
+    private Boolean end_presence; //离席签到 默认 未签到
+
+    public Boolean getEnd_presence() {
+        return end_presence;
+    }
+
+    public void setEnd_presence(Boolean end_presence) {
+        this.end_presence = end_presence;
+    }
 
     public Integer getUid() {
         return uid;

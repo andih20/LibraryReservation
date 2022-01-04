@@ -8,4 +8,6 @@ public interface UserService {
     public User QueryUser(User user);
 
     public User QueryUserByEmail(User user);
+
+    void updateUser(User user);
 }

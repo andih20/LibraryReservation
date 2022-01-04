@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: liuliuliu
@@ -14,6 +15,9 @@
     </script>
 </head>
 <body>
+    <c:if test="${late}">
+        <h3>"你已经迟到，签到无效"</h3>
+    </c:if>
     <form action="${pageContext.request.contextPath}/sign" method="post">
         <input type="button" name="return" value="返回主界面" onclick="lay(1)">
         <input type="submit" name="submit" value="签到"><br>

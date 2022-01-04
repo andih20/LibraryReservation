@@ -14,6 +14,12 @@ import service.user.SeatService;
 import service.user.UserService;
 
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -128,74 +134,6 @@ public class DispatchController {
         session.setAttribute("recordings",recordings);
 
         return "user/user_info";
-    }
-
-
-    //签到
-    //初始化扫码界面
-    @RequestMapping("toSign")
-    public String toSign(){
-        return "user/sign";
-    }
-    //扫码操作
-    @RequestMapping("sign")
-    public String sign(HttpSession session){
-        //设置记录出席
-        Recording recording = (Recording) session.getAttribute("recording");
-        recording.setPresence(true);
-        recordingService.SignRecording(recording);
-
-        return "user/main";
-    }
-
-    //离开签到
-    //初始化扫码界面
-    @RequestMapping("toLeave")
-    public String toLeave(){
-        return "user/leave";
-    }
-    //扫码操作
-    @RequestMapping("leave")
-    public String leave(HttpSession session){
-        //设置座位为空
-        Seat seat = (Seat) session.getAttribute("seat");
-        seat.setIsempty(true);
-        seatService.SetSeatIsempty(seat);
-
-        return "user/main";
-    }
-
-
-    //初始化预约界面
-    @RequestMapping("toReservation")
-    public String toReservation(@ModelAttribute("recording")Recording recording,String id,HttpSession session){
-        Seat seat = seatService.GetSeatById(Integer.parseInt(id));
-        session.setAttribute("seat",seat);
-        return "user/reservation";
-    }
-    //处理预约
-    @RequestMapping("reservation")
-    public String reservation(@ModelAttribute("recording") Recording recording,User user, Seat seat, HttpSession session, Model model){
-        if(user.getBlack()){
-            session.setAttribute("black", true);
-            return "user/reservation";
-        }
-
-        //设置座位不为空
-        seat = (Seat) session.getAttribute("seat");
-        seat.setIsempty(false);
-        seatService.SetSeatIsempty(seat);
-
-        //添加一个记录
-        user = (User) session.getAttribute("user");
-        seat = (Seat) session.getAttribute("seat");
-        recording.setUser_id(user.getId());
-        recording.setSeat_id(seat.getId());
-        recordingService.AddRecording(recording);
-        session.setAttribute("recording", recording);
-        session.setAttribute("user",user);
-
-        return "user/main";
     }
 
 }

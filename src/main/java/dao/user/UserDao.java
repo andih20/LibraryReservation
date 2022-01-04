@@ -12,4 +12,6 @@ public interface UserDao {
     public User queryUser(User user);
 
     public User queryUserByEmail(User user);
+
+    void updateUser(User user);
 }
