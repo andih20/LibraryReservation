@@ -10,4 +10,6 @@ public interface UserService {
     public User QueryUserByEmail(User user);
 
     void updateUser(User user);
+
+    String deleteUser(User user);
 }

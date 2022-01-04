@@ -14,4 +14,6 @@ public interface UserDao {
     public User queryUserByEmail(User user);
 
     void updateUser(User user);
+
+    boolean deleteUser(User user);
 }

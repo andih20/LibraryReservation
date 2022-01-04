@@ -11,7 +11,7 @@ public class UserInterceptor implements HandlerInterceptor {
     @Override
     public  boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception{
         String url = request.getRequestURI();
-        //拦截不登录，直接到main界面到请求
+        //拦截不登录直接到main界面到请求
         if(url.contains("/toMain") || url.contains("/Main")){
             HttpSession session = request.getSession();
             Object obj = session.getAttribute("user");

@@ -42,9 +42,9 @@ public class DispatchController {
     //处理登录功能
     @RequestMapping("/login")
     public String login(@ModelAttribute("user") User user,HttpSession session){
-        session.setAttribute("user",user);
         //从数据库中查找用户，判断是否存在
         user = userService.QueryUser(user);
+        session.setAttribute("user",user);
         if(user!=null){
             //已存在，则正常跳转
             return "user/main";

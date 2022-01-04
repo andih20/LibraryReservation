@@ -16,6 +16,18 @@
             document.forms[0].action="${pageContext.request.contextPath}/toMain";
             document.forms[0].submit();
         }
+        function toUpdateUser(){
+            document.forms[0].action="${pageContext.request.contextPath}/toUpdateUser";
+            document.forms[0].submit();
+        }
+        function toDeleteUser(){
+            document.forms[0].action="${pageContext.request.contextPath}/toDeleteUser";
+            document.forms[0].submit();
+        }
+        function toQuit(){
+            document.forms[0].action="${pageContext.request.contextPath}/toQuit";
+            document.forms[0].submit();
+        }
     </script>
 </head>
 <body>
@@ -28,6 +40,13 @@
         邮箱:${user.uemail}<br>
         漏签次数:${user.number}<br>
         是否进入黑名单:${user.black}<br><br>
+
+        <input type="button" onclick="toUpdateUser()" value="修改个人信息"/>&nbsp;&nbsp;&nbsp;
+        <input type="button" onclick="toMain()" value="返回主界面"/><br>
+
+        <input type="button" onclick="toDeleteUser()" value="注销用户"/>&nbsp;&nbsp;&nbsp;
+        <input type="button" onclick="toQuit()" value="安全退出"/><br><br>
+
         座位记录:
         <table style="border:1px black">
             <tr style="background-color: blanchedalmond">
@@ -73,12 +92,11 @@
             </tr>
         </table><br>
 
-        <c:if test="${user.black}">
-            申述
-            <input type="file" name="uploadFile" id="uploadFile"><br>
-            <input type="submit" value="提交"/>
-        </c:if>
-        <input type="button" onclick="toMain()" value="返回主界面"/>
+<%--        <c:if test="${user.black}">--%>
+<%--            申述--%>
+<%--            <input type="file" name="uploadFile" id="uploadFile"><br>--%>
+<%--            <input type="submit" value="提交"/>--%>
+<%--        </c:if>--%>
     </form:form>
 </body>
 </html>

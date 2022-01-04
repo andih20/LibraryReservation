@@ -5,10 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pojo.User;
 
+import javax.servlet.http.HttpSession;
+
 @Service("userService")
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+
+    private HttpSession session;
 
     //增加一个用户
     @Override
@@ -33,5 +37,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(User user) {
         userDao.updateUser(user);
+    }
+
+    //删除用户
+    @Override
+    public String deleteUser(User user) {
+        if(userDao.deleteUser(user)){
+            return "user/login";
+        }else {
+            return "user/main";
+        }
     }
 }
