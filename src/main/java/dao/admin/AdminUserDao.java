@@ -21,5 +21,7 @@ public interface AdminUserDao {
     public List<User> selectAllUser();
     // 按 email 查询用户
     public List<User> selectUserByEmail(String uemail);
+    // 将用户 black 属性置为 0
+    public int updateUserBlackToZero(User user);
 
 }

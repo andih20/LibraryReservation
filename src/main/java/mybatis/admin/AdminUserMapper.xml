@@ -29,5 +29,8 @@
         insert into user (uname, upassword, uemail) values (#{uname}, #{upassword}, #{uemail})
     </insert>
 
+    <update id="updateUserBlackToZero" parameterType="pojo.User">
+        update user set black = '0' where id = ${id}
+    </update>
 
 </mapper>

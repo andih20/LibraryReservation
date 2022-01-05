@@ -14,7 +14,7 @@
     </delete>
 
     <select id="selectAllBlackUser" resultType="User">
-        select * from user where black = 1
+        select * from user where blackSame = 1
     </select>
 
     <select id="selectBlack" resultType="User">
@@ -22,10 +22,10 @@
     </select>
 
     <update id="updateBlackUser">
-        update user set black = '1', number = '0' where number >= '3';
+        update user set black = '1', blackSame='1', number = '0' where number >= '3';
     </update>
     <update id="updateBlackToZero">
-        update user set black = '0'  where black = '1';
+        update user set blackSame = '0'  where blackSame = '1';
     </update>
     <update id="updateBlackNum">
         update blacklist set scan_num = scan_num+1 where scan_num>=0;

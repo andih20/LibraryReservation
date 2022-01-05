@@ -7,6 +7,15 @@ public class User {
     private String uemail;
     private Integer number=0;  //未签到次数，默认是0
     private Boolean black;     //黑名单，默认是 false
+    private Boolean blackSame;     //黑名单，默认是 false
+
+    public Boolean getBlackSame() {
+        return blackSame;
+    }
+
+    public void setBlackSame(Boolean blackSame) {
+        this.blackSame = blackSame;
+    }
 
     public Integer getId() {
         return id;

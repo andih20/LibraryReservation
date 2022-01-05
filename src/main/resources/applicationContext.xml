@@ -15,7 +15,7 @@
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/libraryreservation?characterEncoding=utf8&amp;serverTimezone=UTC" />
         <property name="username" value="root" />
-        <property name="password" value="12345678" />
+        <property name="password" value="123456" />
         <!-- 最大连接数 -->
         <property name="maxTotal" value="30"/>
         <!-- 最大空闲连接数 -->
@@ -64,8 +64,8 @@
         <property name="jobDetail" ref="jobtask" />
         <!-- cron表达式  -->
         <!-- 每天的 7:00,13:00,18:00 -->
-        <property name="cronExpression" value="0 0 7,13,18 * * ? *" />
-<!--         <property name="cronExpression" value="0/5 * * * * ?" />-->
+<!--        <property name="cronExpression" value="0 0 7,13,18 * * ? *" />-->
+         <property name="cronExpression" value="0/5 * * * * ?" />
     </bean>
 
     <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
