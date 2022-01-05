@@ -64,8 +64,8 @@
         <property name="jobDetail" ref="jobtask" />
         <!-- cron表达式  -->
         <!-- 每天的 7:00,13:00,18:00 -->
-<!--        <property name="cronExpression" value="0 0 7,13,18 * * ? *" />-->
-         <property name="cronExpression" value="0/5 * * * * ?" />
+        <property name="cronExpression" value="0 0 7,13,18 * * ? *" />
+<!--         <property name="cronExpression" value="0/5 * * * * ?" />-->
     </bean>
 
     <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
