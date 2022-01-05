@@ -13,4 +13,5 @@ public interface AdminBlackService {
     // 查询所有黑名单用户
     public String selectUser(Model model, Integer pageCur, Map<String, Object> map);
 
+
 }

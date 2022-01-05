@@ -26,7 +26,7 @@
 </head>
 <body>
 <c:if test="${allUser.size()==0}">
-    暂无预约
+    暂无黑名单用户
 </c:if>
 <c:if test="${allUser.size()!=0}">
     <jsp:useBean id="User" class="pojo.User" scope="request" ></jsp:useBean>

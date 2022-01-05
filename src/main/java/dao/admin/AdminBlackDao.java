@@ -17,6 +17,12 @@ public interface AdminBlackDao {
     // 查询黑名单所有用户
     public List<User> selectAllBlackUser();
     public List<String> selectAllBlackUserByPage(Map<String, Object> map);
+    public List<User> selectBlack();
 
+    // 更新黑名单
+    public int updateBlackUser();
+    public int updateBlackToZero();
+    public int updateBlackNum();
+    public List<User> selectAllBlackUserByScanNum();
 
 }
