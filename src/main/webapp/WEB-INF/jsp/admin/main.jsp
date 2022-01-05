@@ -92,23 +92,14 @@
                 <div class="dropdown">
                     <a>预约管理</a>
                     <div class="p2son">
-                        <a>添加预约</a>
-                        <a>删除预约</a>
-                        <a>修改预约</a>
-                        <a>查找预约</a>
+                        <a href="/LibraryReservation_war_exploded/adminRecord/ToselectRecord">查找预约</a>
                     </div>
                 </div>
             </li>
 
             <li>
                 <div class="dropdown">
-                    <a>公告管理</a>
-                    <div class="p2son">
-                        <a>添加公告</a>
-                        <a>删除公告</a>
-                        <a>修改公告</a>
-                        <a>查找公告</a>
-                    </div>
+                    <a href="/LibraryReservation_war_exploded/adminUser/ScanBlack">定时扫描</a>
                 </div>
             </li>
 
@@ -117,6 +108,9 @@
                     <a href="/LibraryReservation_war_exploded/adminUser/exit">安全退出</a>
                 </div>
             </li>
+
+
+
 
         </ul>
     </div>

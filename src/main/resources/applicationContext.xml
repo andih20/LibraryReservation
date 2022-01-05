@@ -46,4 +46,43 @@
     <!-- 指定需要扫描的包（包括子包），使注解生效。dao包在mybatis-spring组件中已经扫描，这里不再需要扫描-->
     <context:component-scan base-package="service"/>
 
+    <!-- 这个类用来做需要完成的业务-->
+    <bean id="DatabaseScan" class="quartz.DatabaseScan"></bean>
+    <!-- 定时任务 -->
+    <!-- 定义调用对象和调用对象的方法，这个配置和普通的一样的,id是JobDetail的名字  -->
+    <bean id="jobtask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类  -->
+        <property name="targetObject" ref="DatabaseScan" />
+        <!-- 调用类中的方法  -->
+        <property name="targetMethod" value="ScanBlack" />
+        <!-- 是否并发  -->
+        <property name ="concurrent" value ="false"  />
+    </bean>
+
+    <!-- 定义触发时间 ，这边就不同了，这里必须将时间设置成无限长，因为我们要去读取数据库的时间来做为定时器的触发时间-->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean ">
+        <property name="jobDetail" ref="jobtask" />
+        <!-- cron表达式  -->
+        <!-- 每天的 7:00,13:00,18:00 -->
+        <property name="cronExpression" value="0 0 7,13,18 * * ? *" />
+<!--         <property name="cronExpression" value="0/5 * * * * ?" />-->
+    </bean>
+
+    <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+    <bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger" />
+<!--                <ref bean="cronTrigger2"/>-->
+            </list>
+        </property>
+    </bean>
+
+    <!--这个类是用来设置触发时间的， startJobs方法启动调度容器，然后按照上面触发器每隔规定时间执行所配置的 Database.ScanBlack()方法 -->
+    <bean id="quartzManager" class="quartz.QuartzManager" lazy-init="false" init-method="startJobs" >
+        <!--这个对象一定要注入，这样类才能进行管理，还有在类型要用get set方法，不然会报错。-->
+        <property name="scheduler" ref="startQuertz" />
+    </bean>
+
+
 </beans>

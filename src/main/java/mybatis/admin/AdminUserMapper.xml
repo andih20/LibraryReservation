@@ -29,4 +29,5 @@
         insert into user (uname, upassword, uemail) values (#{uname}, #{upassword}, #{uemail})
     </insert>
 
+
 </mapper>
