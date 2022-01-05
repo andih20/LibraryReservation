@@ -14,7 +14,6 @@
         function conceal(){
             document.forms[0].action = "${pageContext.request.contextPath}/toLogin";
             document.forms[0].submit();
-
         }
         //重置按钮
         function reset(){
@@ -26,39 +25,29 @@
     </script>
 </head>
 <body>
+<div align="center">
+    <h1>图书馆预定系统</h1>
+</div>
+<div align="center">
     <%--@elvariable id="user" type="pojo"--%>
     <jsp:useBean id="user" class="pojo.User" scope="session" />
     <form:form action="${pageContext.request.contextPath}/register" modelAttribute="user" method="post">
-        <table>
-            <tr>
-                <td>注册界面</td>
-            </tr>
-            <tr>
-                <td>姓名：</td>
-                <td>
-                    <form:input path="uname"/>
-                </td>
-            </tr>
-            <tr>
-                <td>密码：</td>
-                <td>
-                    <form:password path="upassword" maxlength="20"/>
-                </td>
-            </tr>
-            <tr>
-                <td>邮箱：</td>
-                <td>
-                    <form:input path="uemail" maxlength="20"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <input type="button" value="返回登录" onclick="conceal()">
-                    <input type="button" value="重置" onclick="reset()" >
-                    <input type="button" value="提交" onclick="submit()" >
-                </td>
-            </tr>
-        </table>
+        <div style="border: 1px solid black;width: 250px;height: 200px">
+            <div>
+                <div><h3>注册界面</h3></div>
+            </div>
+            <div>
+                姓名:&nbsp;&nbsp;<form:input path="uname"/><br>
+                密码:&nbsp;&nbsp;<form:password path="upassword" maxlength="20"/><br>
+                邮箱:&nbsp;&nbsp;<form:input path="uemail" maxlength="20"/><br>
+            </div>
+            <div style="margin-top: 20px">
+                <input type="button" value="返回登录" onclick="conceal()">
+                <input type="button" value="重置" onclick="reset()" >
+                <input type="button" value="提交" onclick="submit()" >
+            </div>
+        </div>
     </form:form>
+</div>
 </body>
 </html>

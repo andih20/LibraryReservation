@@ -22,43 +22,34 @@
         }
     </script>
 </head>
-<body>
+<body style="background-image:url(../library.jpg)">
 <%--@elvariable id="user" type="pojo"--%>
 <jsp:useBean id="user" class="pojo.User" scope="session" />
-<form:form action="${pageContext.request.contextPath}/login" modelAttribute="user" method="post">
-    <table>
-        <tr>
-            <td>登录界面</td>
-        </tr>
-        <tr>
-            <td>姓名：</td>
-            <td>
-                <form:input path="uname"/>
-            </td>
-        </tr>
-        <tr>
-            <td>密码：</td>
-            <td>
-                <form:password path="upassword" maxlength="20"/>
-            </td>
-        </tr>
-<%--        <tr>--%>
-<%--            <td>邮箱：</td>--%>
-<%--            <td>--%>
-<%--                <form:input path="uemail" maxlength="20"/>--%>
-<%--            </td>--%>
-<%--        </tr>--%>
-        <tr>
-            <td colspan="2">
-                <input type="button" value="重置" onclick="reset()" >
-                <input type="button" value="提交" onclick="login()" >
-            </td>
-        </tr>
-    </table>
-</form:form>
-<a style="color: cyan" onclick="toRegister()">如果你还没有账号，请点此处注册</a>
-<br>
-<br>
-<a style="color: cyan" style="color: cyan" href="${pageContext.request.contextPath}/admin">如果你是管理员，请点此处</a>
+<div align="center">
+    <h1>图书馆预定系统</h1>
+</div>
+<div align="center">
+    <div align="center" style="width: 250px;align-content: center;padding: 10px;border: 1px solid black;">
+        <form:form action="${pageContext.request.contextPath}/login" modelAttribute="user" method="post">
+            <div style="text-align: center">
+                <h3>登录界面</h3><br>
+            </div>
+            <div>
+                用户名:<form:input path="uname"/><br>
+                密&nbsp;&nbsp;&nbsp;码:<form:password path="upassword" maxlength="20"/><br>
+            </div>
+            <div style="">
+                <input type="button" value="重置" onclick="reset()"  style="margin-top: 20px">
+                <input type="button" value="提交" onclick="login()" style="margin-left: 80px"><br><br>
+            </div>
+            <div>
+                <a style="color: cyan; "
+                   href="${pageContext.request.contextPath}/admin">管理员登录</a>
+                <a style="color: cyan;margin-left: 120px" onclick="toRegister()">注册</a>
+            </div>
+        </form:form>
+    </div>
+</div>
+
 </body>
 </html>
