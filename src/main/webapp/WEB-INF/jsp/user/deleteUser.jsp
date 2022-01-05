@@ -10,6 +10,12 @@
 <html>
 <head>
     <title>注销用户</title>
+    <script>
+        function deleteUser_toMain(){
+            document.forms[0].action="${pageContext.request.contextPath}/toMain";
+            document.forms[0].submit();
+        }
+    </script>
 </head>
 <body>
     <%--@elvariable id="user" type="pojo"--%>
@@ -21,7 +27,7 @@
         漏签次数:${user.number}<br>
         是否进入黑名单:${user.black}<br><br>
 
-        <input type="button" value="返回主界面" onclick="toMain()"/>&nbsp;&nbsp;&nbsp;
+        <input type="button" value="返回主界面" onclick="deleteUser_toMain()"/>&nbsp;&nbsp;&nbsp;
         <input type="submit" value="确定注销"/>
 
     </form:form>

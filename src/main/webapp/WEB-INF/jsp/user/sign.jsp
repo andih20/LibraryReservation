@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: liuliuliu
@@ -11,16 +12,19 @@
 <head>
     <title>扫码签到界面</title>
     <script>
-
+        function sign_toMain(){
+            document.forms[0].action="${pageContext.request.contextPath}/toMain";
+            document.forms[0].submit();
+        }
     </script>
 </head>
 <body>
     <c:if test="${late}">
         <h3>"你已经迟到，签到无效"</h3>
     </c:if>
-    <form action="${pageContext.request.contextPath}/sign" method="post">
-        <input type="button" onclick="toMain()" value="返回主界面"/>
+    <form:form action="${pageContext.request.contextPath}/sign" method="post">
+        <input type="button" onclick="sign_toMain()" value="返回主界面"/>
         <input type="submit" name="submit" value="签到"><br>
-    </form>
+    </form:form>
 </body>
 </html>

@@ -10,6 +10,12 @@
 <html>
 <head>
     <title>更改用户信息</title>
+    <script>
+        function updateUser_toMain(){
+            document.forms[0].action="${pageContext.request.contextPath}/toMain";
+            document.forms[0].submit();
+        }
+    </script>
 </head>
 <body>
     <%--@elvariable id="user" type="pojo"--%>
@@ -22,7 +28,7 @@
         <input type="reset" value="重置"/>&nbsp;&nbsp;&nbsp;
         <input type="submit" value="提交"/><br><br>
 
-        <input type="button" onclick="toMain()" value="返回主界面"/>
+        <input type="button" onclick="updateUser_toMain()" value="返回主界面"/>
     </form:form>
 </body>
 </html>

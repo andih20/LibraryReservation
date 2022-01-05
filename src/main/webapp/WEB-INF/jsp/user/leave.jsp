@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: liuliuliu
@@ -10,13 +11,16 @@
 <head>
     <title>离开签到</title>
     <script>
-
+        function leave_toMain(){
+            document.forms[0].action="${pageContext.request.contextPath}/toMain";
+            document.forms[0].submit();
+        }
     </script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/leave" method="post">
-    <input type="button" onclick="toMain()" value="返回主界面"/>
+<form:form method="post" action="${pageContext.request.contextPath}/leave">
+    <input type="button" onclick="leave_toMain()" value="返回主界面"/>
     <input type="submit" name="submit" value="离开签到"><br>
-</form>
+</form:form>
 </body>
 </html>
