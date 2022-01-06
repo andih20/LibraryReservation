@@ -76,7 +76,13 @@ public class DispatchController {
     }
 
 
+
     //初始化主界面
+    @RequestMapping("newMain")
+    public String tonewMain(){
+        return "user/newMain";
+    }
+    //初始化副界面
     @RequestMapping("toMain")
     public String toMain(Floor floor,HttpSession session, Model model){
         if(floor.getId() != null){

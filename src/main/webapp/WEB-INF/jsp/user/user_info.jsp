@@ -11,6 +11,11 @@
 <html>
 <head>
     <title>用户信息界面</title>
+    <style type="text/css">
+        html{
+            background-color: white;
+        }
+    </style>
     <script type="text/javascript">
         function User_toMain(){
             document.forms[0].action="${pageContext.request.contextPath}/toMain";

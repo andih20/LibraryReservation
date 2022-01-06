@@ -11,6 +11,12 @@
 <html>
 <head>
     <title>扫码签到界面</title>
+    <style type="text/css">
+        html{
+            background-color: white;
+            opacity: 0.7;
+        }
+    </style>
     <script type="text/javascript">
         function sign_toMain(){
             document.forms[0].action="${pageContext.request.contextPath}/toMain";

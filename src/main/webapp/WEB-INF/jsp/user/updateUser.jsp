@@ -10,6 +10,12 @@
 <html>
 <head>
     <title>更改用户信息</title>
+    <style type="text/css">
+        html{
+            background-color: white;
+            opacity: 0.7;
+        }
+    </style>
     <script type="text/javascript">
         function updateUser_toMain(){
             document.forms[0].action="${pageContext.request.contextPath}/toMain";

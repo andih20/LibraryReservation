@@ -10,6 +10,12 @@
 <html>
 <head>
     <title>注册</title>
+    <style type="text/css">
+        html{
+            background-color: white;
+            opacity: 0.7;
+        }
+    </style>
     <script type="text/javascript">
         function conceal(){
             document.forms[0].action = "${pageContext.request.contextPath}/toLogin";
@@ -32,14 +38,14 @@
     <%--@elvariable id="user" type="pojo"--%>
     <jsp:useBean id="user" class="pojo.User" scope="session" />
     <form:form action="${pageContext.request.contextPath}/register" modelAttribute="user" method="post">
-        <div style="border: 1px solid black;width: 250px;height: 200px">
+        <div style="border: 1px solid black;width: 300px;height: 200px">
             <div>
                 <div><h3>注册界面</h3></div>
             </div>
             <div>
-                姓名:&nbsp;&nbsp;<form:input path="uname"/><br>
-                密码:&nbsp;&nbsp;<form:password path="upassword" maxlength="20"/><br>
-                邮箱:&nbsp;&nbsp;<form:input path="uemail" maxlength="20"/><br>
+                姓名:&nbsp;&nbsp;<form:input path="uname"/>(8-16)位<br>
+                密码:&nbsp;&nbsp;<form:password path="upassword" maxlength="20"/>(8-16)位<br>
+                邮箱:&nbsp;&nbsp;<form:input path="uemail" maxlength="20"/>(QQ邮箱)<br>
             </div>
             <div style="margin-top: 20px">
                 <input type="button" value="返回登录" onclick="conceal()">

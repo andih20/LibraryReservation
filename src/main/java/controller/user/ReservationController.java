@@ -107,6 +107,7 @@ public class ReservationController {
     @RequestMapping("reservation")
     public String reservation(@ModelAttribute("recording") Recording recording, User user, HttpSession session){
         user = (User) session.getAttribute("user");
+
         //已加入黑名单者，不得预约
         if(user.getBlack()){
             session.setAttribute("black", true);

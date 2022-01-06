@@ -8,6 +8,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>图书馆预定系统</title>
+    <style type="text/css">
+        html{
+            background-color: white;
+            opacity: 0.7;
+        }
+    </style>
     <script  type="text/javascript" >
         function toMain(){
             document.forms[0].action="${pageContext.request.contextPath}/toMain";

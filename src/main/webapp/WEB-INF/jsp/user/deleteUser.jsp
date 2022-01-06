@@ -10,6 +10,12 @@
 <html>
 <head>
     <title>注销用户</title>
+    <style type="text/css">
+        html{
+            background-color: white;
+            opacity: 0.7;
+        }
+    </style>
     <script type="text/javascript">
         function deleteUser_toMain(){
             document.forms[0].action="${pageContext.request.contextPath}/toMain";
