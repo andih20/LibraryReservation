@@ -15,6 +15,9 @@
             background-color: white;
             opacity: 0.7;
         }
+        td{
+            border:1px solid blanchedalmond;
+        }
     </style>
     <script type="text/javascript">
         function deleteUser_toMain(){
@@ -45,12 +48,32 @@
         <div align="center">
             <h3>个人信息</h3>
             <div style="align-content: center;">
-                ID:${user.id}<br>
-                姓名:${user.uname}<br>
-                密码:${user.upassword}<br>
-                邮箱:${user.uemail}<br>
-                漏签次数:${user.number}<br>
-                是否进入黑名单:${user.black}<br><br>
+                <table >
+                    <tr>
+                        <td>ID:</td>
+                        <td>${user.id}</td>
+                    </tr>
+                    <tr>
+                        <td>姓名:</td>
+                        <td>${user.uname}</td>
+                    </tr>
+                    <tr>
+                        <td>密码:</td>
+                        <td>${user.upassword}</td>
+                    </tr>
+                    <tr>
+                        <td>邮箱:</td>
+                        <td>${user.uemail}</td>
+                    </tr>
+                    <tr>
+                        <td>漏签次数:</td>
+                        <td>${user.number}</td>
+                    </tr>
+                    <tr>
+                        <td>是否进入黑名单:</td>
+                        <td>${user.black}</td>
+                    </tr>
+                </table>
             </div>
         </div>
 

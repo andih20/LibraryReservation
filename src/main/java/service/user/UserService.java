@@ -2,14 +2,20 @@ package service.user;
 
 import pojo.User;
 
+import javax.servlet.http.HttpSession;
+
 public interface UserService {
-    public Boolean AddUser(User user);
+    String selectUserForLogin(User user, HttpSession session);
 
-    public User QueryUser(User user);
+    String selectUserForRegister(User user);
 
-    public User QueryUserByEmail(User user);
+    User QueryUser(User user);
 
-    void updateUser(User user);
+    String updateUser(User user, HttpSession session);
 
     String deleteUser(User user);
+
+    Boolean AddUser(User user);
+
+    User QueryUserByEmail(User user);
 }

@@ -7,11 +7,11 @@ import pojo.User;
 @Repository("userDao")
 @Mapper
 public interface UserDao {
-    public void addUser(User user);
+    void addUser(User user);
 
-    public User queryUser(User user);
+    User queryUser(User user);
 
-    public User queryUserByEmail(User user);
+    User queryUserByEmail(User user);
 
     void updateUser(User user);
 

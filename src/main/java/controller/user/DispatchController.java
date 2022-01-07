@@ -43,15 +43,8 @@ public class DispatchController {
     @RequestMapping("/login")
     public String login(@ModelAttribute("user") User user,HttpSession session){
         //从数据库中查找用户，判断是否存在
-        user = userService.QueryUser(user);
-        session.setAttribute("user",user);
-        if(user!=null){
-            //已存在，则正常跳转
-            return "user/main";
-        }else {
-            //未存在则返回登录界面
-            return  "user/login";
-        }
+        //并进行跳转页面
+        return userService.selectUserForLogin(user,session);
     }
 
 
@@ -64,19 +57,12 @@ public class DispatchController {
     @RequestMapping("register")
     public String register(@ModelAttribute("user") User user){
         //从数据库中查找用户，判断是否存在
-        User temp_user = userService.QueryUserByEmail(user);
-        if(temp_user!=null){
-            //已存在，则重新输入
-            return "user/register";
-        }else {
-            //未存在，则正常注册
-            userService.AddUser(user);
-            return "user/login";
-        }
+        return userService.selectUserForRegister(user);
     }
 
 
 
+    //大界面嵌套小界面
     //初始化主界面
     @RequestMapping("newMain")
     public String tonewMain(){
@@ -84,62 +70,16 @@ public class DispatchController {
     }
     //初始化副界面
     @RequestMapping("toMain")
-    public String toMain(Floor floor,HttpSession session, Model model){
-        if(floor.getId() != null){
-            floor.setId(floor.getId()); //选页
-        }else {
-            floor.setId(1); //默认第一页
-        }
-
-        List<Seat> seats = seatService.GetAllSeatByFloor(floor);
-        User user = (User) session.getAttribute("user");
-        user = userService.QueryUser(user);
-        model.addAttribute("seats",seats);
-        model.addAttribute("floor",floor);
-        model.addAttribute("user",user);
-        session.setAttribute("user",user);
-
-        return "user/main";
+    public String toMain(Floor floor, HttpSession session){
+        return seatService.GetAllSeatByFloor(floor,session);
     }
+
 
 
     //去用户个人信息界面
     @RequestMapping("toUser_info")
     public String toUser_info(HttpSession session,Model model, Integer pageCur){
-        //找到个人信息
-        User user = (User) session.getAttribute("user");
-        user = userService.QueryUser(user);
-        session.setAttribute("user",user);
-
-        //找到个人记录
-        List<Recording> recordings = recordingService.QueryRecordingByUser(user);
-        int temp = recordings.size();
-        model.addAttribute("totalCount", temp);
-        int totalPage = 0;
-        if (temp == 0) {
-            totalPage = 0;//总页数
-        } else {
-            //返回大于或者等于指定表达式的最小整数
-            totalPage = (int) Math.ceil((double) temp / 10);
-        }
-        if (pageCur == null) {
-            pageCur = 1;
-        }
-        if ((pageCur - 1) * 10 > temp) {
-            pageCur = pageCur - 1;
-        }
-        //分页查询
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("startIndex", (pageCur - 1) * 10);//起始位置
-        map.put("perPageSize", 10);//每页10个
-        map.put("user_id",user.getId());
-        recordings = recordingService.selectAllRecordingsByPage(map);
-        model.addAttribute("allGoods", recordings);
-        model.addAttribute("totalPage", totalPage);
-        model.addAttribute("pageCur", pageCur);
-        session.setAttribute("recordings",recordings);
-
-        return "user/user_info";
+        return recordingService.QueryRecordingByUser(session,model,pageCur);
     }
 
 }

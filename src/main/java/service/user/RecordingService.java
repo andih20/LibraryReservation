@@ -1,20 +1,25 @@
 package service.user;
 
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pojo.Recording;
-import pojo.User;
 
+import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
 public interface RecordingService {
-    //通过User的Id查找使用记录
-    List<Recording> QueryRecordingByUser(User user);
 
-    void AddRecording(Recording recording);
+    String AddRecording(Recording recording, HttpSession session);
 
-    void SignRecording(Recording recording);
+    String SignRecordingStart(HttpSession session) throws ParseException;
+
+    String SignRecordingEnd(HttpSession session);
+
 
     List<Recording> selectAllRecordingsByPage(Map<String, Object> map);
+
+    String QueryRecordingByUser(HttpSession session, Model model, Integer pageCur);
+
+
 }

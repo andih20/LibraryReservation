@@ -11,7 +11,7 @@ import java.util.Map;
 @Repository("recordingDao")
 @Mapper
 public interface RecordingDao {
-    public List<Recording> queryRecordingByUser(User user);
+    List<Recording> queryRecordingByUser(User user);
 
     void addRecording(Recording recording);
 

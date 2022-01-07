@@ -23,15 +23,7 @@ public class UserController {
     //用户修改个人信息，返回主界面
     @RequestMapping("updateUser")
     public String updateUser(@ModelAttribute("User") User user, HttpSession session){
-        //设置新值
-        User new_user = (User) session.getAttribute("user");
-        new_user.setUname(user.getUname());
-        new_user.setUpassword(user.getUpassword());
-        new_user.setUemail(user.getUemail());
-        //更新用户信息
-        userService.updateUser(new_user);
-        session.setAttribute("user",new_user);
-        return "user/main";
+        return userService.updateUser(user,session);
     }
 
 
@@ -43,7 +35,6 @@ public class UserController {
     //用户注销，返回登录界面
     @RequestMapping("deleteUser")
     public String deleteUser(@ModelAttribute("user") User user,HttpSession session){
-        user = (User) session.getAttribute("user");
         return userService.deleteUser(user);
     }
 

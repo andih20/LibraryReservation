@@ -1,11 +1,13 @@
 package service.user;
 
+import com.mysql.cj.Session;
 import dao.user.SeatDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pojo.Floor;
 import pojo.Seat;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service("seatService")
@@ -15,9 +17,20 @@ public class SeatServiceImpl implements SeatService{
 
     //通过楼层查找所有座位
     @Override
-    public List<Seat> GetAllSeatByFloor(Floor floor) {
-        return seatDao.getAllSeatByFloor(floor);
+    public String GetAllSeatByFloor(Floor floor,HttpSession session) {
+        if(floor.getId() != null){
+            floor.setId(floor.getId()); //选层数
+        }else {
+            floor.setId(1); //默认第一层
+        }
+
+        List<Seat> seats = seatDao.getAllSeatByFloor(floor);
+        session.setAttribute("seats",seats);
+        session.setAttribute("floor",floor);
+        return "user/main";
     }
+
+
 
     //通过ID，查找座位
     @Override
